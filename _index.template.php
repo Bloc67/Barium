@@ -2,10 +2,9 @@
 /**
  * Simple Machines Forum (SMF)
  *
- * @package SMF
- * @author Simple Machines https://www.simplemachines.org
- * @copyright 2022 Simple Machines and individual contributors
- * @license https://www.simplemachines.org/about/smf/license.php BSD
+ * @package Bloc67	
+ * @author bloc67 https://github.com/bloc67/Barium
+ * @copyright 2022 Bloc67
  *
  * @version 2.1.0
  */

@@ -1,21 +1,369 @@
-/* You can find detailed information at https://wiki.simplemachines.org/smf/Curve2_CSS
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+ html {
+	line-height: 1.15; /* 1 */
+	-webkit-text-size-adjust: 100%; /* 2 */
+  }
+  
+  /* Sections
+	 ========================================================================== */
+  
+  /**
+   * Remove the margin in all browsers.
+   */
+  
+  body {
+	margin: 0;
+  }
+  
+  /**
+   * Render the `main` element consistently in IE.
+   */
+  
+  main {
+	display: block;
+  }
+  
+  /**
+   * Correct the font size and margin on `h1` elements within `section` and
+   * `article` contexts in Chrome, Firefox, and Safari.
+   */
+  
+  h1 {
+	font-size: 2rem;
+	margin: 0.67em 0;
+  }
+  
+  /* Grouping content
+	 ========================================================================== */
+  
+  /**
+   * 1. Add the correct box sizing in Firefox.
+   * 2. Show the overflow in Edge and IE.
+   */
+  
+  hr {
+	box-sizing: content-box; /* 1 */
+	height: 0; /* 1 */
+	overflow: visible; /* 2 */
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+  
+  pre {
+	font-family: monospace, monospace; /* 1 */
+	font-size: 1rem; /* 2 */
+  }
+  
+  /* Text-level semantics
+	 ========================================================================== */
+  
+  /**
+   * Remove the gray background on active links in IE 10.
+   */
+  
+  a {
+	background-color: transparent;
+  }
+  
+  /**
+   * 1. Remove the bottom border in Chrome 57-
+   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+   */
+  
+  abbr[title] {
+	border-bottom: none; /* 1 */
+	text-decoration: underline; /* 2 */
+	text-decoration: underline dotted; /* 2 */
+  }
+  
+  /**
+   * Add the correct font weight in Chrome, Edge, and Safari.
+   */
+  
+  b,
+  strong {
+	font-weight: bolder;
+  }
+  
+  /**
+   * 1. Correct the inheritance and scaling of font size in all browsers.
+   * 2. Correct the odd `em` font sizing in all browsers.
+   */
+  
+  code,
+  kbd,
+  samp {
+	font-family: monospace, monospace; /* 1 */
+	font-size: 1rem; /* 2 */
+  }
+  
+  /**
+   * Add the correct font size in all browsers.
+   */
+  
+  small {
+	font-size: 80%;
+  }
+  
+  /**
+   * Prevent `sub` and `sup` elements from affecting the line height in
+   * all browsers.
+   */
+  
+  sub,
+  sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+  }
+  
+  sub {
+	bottom: -0.25rem;
+  }
+  
+  sup {
+	top: -0.5rem;
+  }
+  
+  /* Embedded content
+	 ========================================================================== */
+  
+  /**
+   * Remove the border on images inside links in IE 10.
+   */
+  
+  img {
+	border-style: none;
+  }
+  
+  /* Forms
+	 ========================================================================== */
+  
+  /**
+   * 1. Change the font styles in all browsers.
+   * 2. Remove the margin in Firefox and Safari.
+   */
+  
+  button,
+  input,
+  optgroup,
+  select,
+  textarea {
+	font-family: inherit; /* 1 */
+	font-size: 100%; /* 1 */
+	line-height: 1.15; /* 1 */
+	margin: 0; /* 2 */
+  }
+  
+  /**
+   * Show the overflow in IE.
+   * 1. Show the overflow in Edge.
+   */
+  
+  button,
+  input { /* 1 */
+	overflow: visible;
+  }
+  
+  /**
+   * Remove the inheritance of text transform in Edge, Firefox, and IE.
+   * 1. Remove the inheritance of text transform in Firefox.
+   */
+  
+  button,
+  select { /* 1 */
+	text-transform: none;
+  }
+  
+  /**
+   * Correct the inability to style clickable types in iOS and Safari.
+   */
+  
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+	-webkit-appearance: button;
+  }
+  
+  /**
+   * Remove the inner border and padding in Firefox.
+   */
+  
+  button::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner {
+	border-style: none;
+	padding: 0;
+  }
+  
+  /**
+   * Restore the focus styles unset by the previous rule.
+   */
+  
+  button:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring {
+	outline: 1px dotted ButtonText;
+  }
+  
+  /**
+   * Correct the padding in Firefox.
+   */
+  
+  fieldset {
+	padding: 0.35em 0.75em 0.625rem;
+  }
+  
+  /**
+   * 1. Correct the text wrapping in Edge and IE.
+   * 2. Correct the color inheritance from `fieldset` elements in IE.
+   * 3. Remove the padding so developers are not caught out when they zero out
+   *    `fieldset` elements in all browsers.
+   */
+  
+  legend {
+	box-sizing: border-box; /* 1 */
+	color: inherit; /* 2 */
+	display: table; /* 1 */
+	max-width: 100%; /* 1 */
+	padding: 0; /* 3 */
+	white-space: normal; /* 1 */
+  }
+  
+  /**
+   * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+   */
+  
+  progress {
+	vertical-align: baseline;
+  }
+  
+  /**
+   * Remove the default vertical scrollbar in IE 10+.
+   */
+  
+  textarea {
+	overflow: auto;
+  }
+  
+  /**
+   * 1. Add the correct box sizing in IE 10.
+   * 2. Remove the padding in IE 10.
+   */
+  
+  [type="checkbox"],
+  [type="radio"] {
+	box-sizing: border-box; /* 1 */
+	padding: 0; /* 2 */
+  }
+  
+  /**
+   * Correct the cursor style of increment and decrement buttons in Chrome.
+   */
+  
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
+	height: auto;
+  }
+  
+  /**
+   * 1. Correct the odd appearance in Chrome and Safari.
+   * 2. Correct the outline style in Safari.
+   */
+  
+  [type="search"] {
+	-webkit-appearance: textfield; /* 1 */
+	outline-offset: -2px; /* 2 */
+  }
+  
+  /**
+   * Remove the inner padding in Chrome and Safari on macOS.
+   */
+  
+  [type="search"]::-webkit-search-decoration {
+	-webkit-appearance: none;
+  }
+  
+  /**
+   * 1. Correct the inability to style clickable types in iOS and Safari.
+   * 2. Change font properties to `inherit` in Safari.
+   */
+  
+  ::-webkit-file-upload-button {
+	-webkit-appearance: button; /* 1 */
+	font: inherit; /* 2 */
+  }
+  
+  /* Interactive
+	 ========================================================================== */
+  
+  /*
+   * Add the correct display in Edge, IE 10+, and Firefox.
+   */
+  
+  details {
+	display: block;
+  }
+  
+  /*
+   * Add the correct display in all browsers.
+   */
+  
+  summary {
+	display: list-itrem;
+  }
+  
+  /* Misc
+	 ========================================================================== */
+  
+  /**
+   * Add the correct display in IE 10+.
+   */
+  
+  template {
+	display: none;
+  }
+  
+  /**
+   * Add the correct display in IE 10.
+   */
+  
+  [hidden] {
+	display: none;
+  }
+  
 /* Index */
 html {
-	background: #3e5a78;
-	scroll-padding-top: 3rem;
+	background: #fff;
+	font-size: 18px;
 }
 body {
-	background: #e9eef2;
-	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
-	color: #4d4d4d;
-	display: flex;
-	flex-direction: column;
+	background: #fff;
+	font-family: 'Source Sans Pro', sans-serif;	
+	color: #444;
+	display: grid;
 	min-height: 100vh;
 }
 ::selection {
 	text-shadow: none;
-	background: #99d4ff;
-	color: rgba(0, 0, 0, 0.6);
+	background: teal;
+	color: #fff;
 }
 /* General reset */
 * {
@@ -38,34 +386,32 @@ abbr {
 }
 input, button, select, textarea {
 	color: #222;
-	font: 83.33%/150% "Segoe UI", "Helvetica Neue", "Nimbus Sans L", Arial, "Liberation Sans", sans-serif;
-	background: #fff;
+	font-family: 'Source Sans Pro', sans-serif;
+	background: #eee;
 	outline: none;
 	border: 1px solid #bbb;
 	vertical-align: middle;
-	border-radius: 3px;
-	box-shadow: 1px 2px 1px rgba(160, 187, 221, 0.2) inset;
-	padding: 0.3em 0.4em;
+	padding: 0.3em 0.4rem;
 }
 input:hover, textarea:hover, button:hover, select:hover {
 	outline: none;
-	border-color: #82a2bc;
+	border-color: teal;
 }
 textarea:hover {
-	background: #fbfbfb;
+	background: #fff;
 }
 input:focus, textarea:focus, button:focus, select:focus {
 	outline: none;
-	border-color: #7fb0d8;
+	border-color: steelblue;
 	background: #fff;
 }
 input, button, select {
-	padding: 0 0.4em;
-	height: 2em;
-	line-height: 2em;
+	padding: 0 0.4rem;
+	height: 2rem;
+	line-height: 2rem;
 }
 select {
-	padding: 0.22em 0.2em; /* selects don't apply line-height */
+	padding: 0.22em 0.2rem; /* selects don't apply line-height */
 }
 /* Selects with more than one line */
 select[size] {
@@ -89,7 +435,7 @@ img, input, select, textarea {
 }
 /* The following is necessary */
 textarea {
-	font-size: 1em;
+	font-size: 1rem;
 }
 
 /* Use a consistent monospace font everywhere */
@@ -162,7 +508,7 @@ em, .em {
 }
 /* Default <strong> color on these tags */
 h1, h2, h3, h4, h5, h6 {
-	font-size: 1em;
+	font-size: 1rem;
 	color: #444;
 }
 /* All input elements that are checkboxes or radio buttons shouldn't have a border around them */
@@ -227,7 +573,7 @@ body#help_popup {
 #likes .description {
 	font-style: italic;
 	opacity: 0.4;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	display: block;
 }
 
@@ -280,10 +626,10 @@ a.new_posts:visited {
 
 /* Default font sizes: small (8pt), normal (10pt), and large (14pt). */
 .smalltext, tr.smalltext th {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 }
 .largetext {
-	font-size: 1.4em;
+	font-size: 1.4rem;
 }
 h3.largetext {
 	font-size: large;
@@ -309,7 +655,7 @@ h3.largetext {
 	text-align: justify;
 }
 .double_height {
-	line-height: 2em;
+	line-height: 2rem;
 }
 /* some common padding styles */
 .padding {
@@ -324,11 +670,11 @@ h3.largetext {
 	vertical-align: top;
 }
 .half_content:nth-of-type(odd) {
-	margin-right: -0.25em;
+	margin-right: -0.25rem;
 	padding-right: 0.3%;
 }
 .half_content:nth-of-type(even) {
-	margin-left: -0.2em;
+	margin-left: -0.2rem;
 	padding-left: 0.3%;
 }
 
@@ -344,7 +690,7 @@ blockquote {
 blockquote cite {
 	display: block;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	margin-bottom: 3px;
 }
 blockquote cite::before {
@@ -375,12 +721,12 @@ blockquote cite::before {
 	padding: 3px 12px;
 	overflow: auto;
 	white-space: nowrap;
-	max-height: 25em;
+	max-height: 25rem;
 }
 /* The "Quote:" and "Code:" header parts... */
 .codeheader, .quoteheader {
 	color: #666;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	padding: 0 2px;
 }
 /* For links to change the code stuff... */
@@ -400,7 +746,7 @@ blockquote cite::before {
 	border-bottom: 1px solid #346;
 }
 .bbc_size {
-	line-height: 1.4em;
+	line-height: 1.4rem;
 }
 .bbc_color a {
 	color: inherit;
@@ -420,16 +766,16 @@ blockquote cite::before {
 	list-style-type: inherit;
 }
 .bbc_float {
-	margin-bottom: 1em;
+	margin-bottom: 1rem;
 	/* default max-width to use if none was specified in the BBC */
 	max-width: 45%;
 }
 .bbc_float.floatleft {
-	margin-right: 1em;
+	margin-right: 1rem;
 	clear: left;
 }
 .bbc_float.floatright {
-	margin-left: 1em;
+	margin-left: 1rem;
 	clear: right;
 }
 .bbc_img {
@@ -489,7 +835,7 @@ a img {
 .highlight {
 	font-weight: bold;
 	color: #ff7200 !important;
-	font-size: 1.1em;
+	font-size: 1.1rem;
 	background-color: inherit;
 }
 
@@ -501,14 +847,13 @@ a img {
 }
 .pagesection .pagelinks {
 	display: inline-block;
-	float: left;
 }
 .pages::after, .jump_to::after, .code::after,
 strong[id^='child_list_']::after {
 	content: ": ";
 }
 .pages {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	margin-left: 7px;
 }
 #main_content_section .pagesection {
@@ -540,7 +885,7 @@ strong[id^='child_list_']::after {
 /* Posts and personal messages displayed throughout the forum. */
 .post {
 	overflow: auto;
-	line-height: 1.4em;
+	line-height: 1.4rem;
 	padding: 1px 0;
 }
 
@@ -581,7 +926,7 @@ a.moderation_link, a.moderation_link:visited {
 	border-bottom: 4px solid #f96f00;
 	color: #f96f00;
 	text-align: center;
-	font-size: 1.6em;
+	font-size: 1.6rem;
 	padding: 8px;
 	width: 100%;
 	line-height: 25px;
@@ -593,7 +938,7 @@ a.moderation_link, a.moderation_link:visited {
 #ajax_in_progress a {
 	color: orange;
 	text-decoration: underline;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	float: right;
 	margin-right: 20px;
 }
@@ -717,8 +1062,8 @@ img.sort, .sort {
 .dropmenu > li, #top_info > li {
 	display: inline-block;
 	margin: 0 2px 0 1px;
-	font-size: 0.9em;
-	line-height: 1.9em;
+	font-size: 0.9rem;
+	line-height: 1.9rem;
 }
 /* Disable default focus outlines */
 .dropmenu a {
@@ -810,7 +1155,7 @@ a[class^="mobile_generic_menu_"] {
 }
 .profile_user_links li {
 	font-size: .8rem;
-	line-height: 2em;
+	line-height: 2rem;
 	padding-left: 24px;
 	text-indent: -24px;
 	-webkit-hyphens: auto;
@@ -823,7 +1168,7 @@ a[class^="mobile_generic_menu_"] {
 	box-sizing: content-box;
 }
 .top_menu.scrollable {
-	max-height: 30em;
+	max-height: 30rem;
 }
 .pm_unread, .alerts_unread {
 	margin-top: 5px;
@@ -874,7 +1219,7 @@ a[class^="mobile_generic_menu_"] {
 }
 .unread_notify_image span.alert_icon {
 	display: block;
-	line-height: 1em;
+	line-height: 1rem;
 }
 .unread_notify_image .avatar + .alert_icon {
 	width: auto;
@@ -895,8 +1240,8 @@ a[class^="mobile_generic_menu_"] {
 	z-index: 90;
 	position: absolute;
 	display: none;
-	min-width: 18.2em;
-	padding: 0.5em;
+	min-width: 18.2rem;
+	padding: 0.5rem;
 	font-weight: normal;
 	border: solid 1px #999;
 	border-left: solid 1px #bbb;
@@ -909,8 +1254,8 @@ a[class^="mobile_generic_menu_"] {
 .dropmenu li li {
 	margin: 0;
 	padding: 0;
-	width: 17em;
-	font-size: 1em;
+	width: 17rem;
+	font-size: 1rem;
 	border-radius: 3px;
 	border: 1px solid transparent;
 }
@@ -920,7 +1265,7 @@ a[class^="mobile_generic_menu_"] {
 	padding: 0 9px;
 	color: #346;
 	border: none;
-	line-height: 2.2em;
+	line-height: 2.2rem;
 }
 
 .dropmenu li li a > img {
@@ -928,7 +1273,7 @@ a[class^="mobile_generic_menu_"] {
 }
 /* The profile/pm menus are declared off .dropmenu li ul for consistency but have other characteristics. */
 .top_menu {
-	min-width: 25em;
+	min-width: 25rem;
 }
 .top_menu .login {
 	width: 100%;
@@ -947,7 +1292,7 @@ a[class^="mobile_generic_menu_"] {
 .dropmenu ul a:focus, .dropmenu ul ul a:focus {
 	margin-left: 9990px;
 	border: none;
-	width: 17em;
+	width: 17rem;
 }
 .dropmenu ul ul a:focus {
 	margin-left: 19950px;
@@ -959,11 +1304,11 @@ a[class^="mobile_generic_menu_"] {
 }
 /* Level 3 submenu wrapper positioning. */
 .dropmenu li ul ul {
-	margin: -2em 0 0 15.3em;
+	margin: -2em 0 0 15.3rem;
 }
 /* Level 3 maintains font-size the same as Level 2. */
 .dropmenu li li li a {
-	font-size: 1em;
+	font-size: 1rem;
 }
 /* Levels 2 and 3 hover effects. */
 .dropmenu li li:hover {
@@ -1017,7 +1362,7 @@ a[class^="mobile_generic_menu_"] {
 	padding: 0 8px;
 	color: #444;
 	font-size: 0.7rem;
-	line-height: 2em;
+	line-height: 2rem;
 	text-transform: uppercase;
 	cursor: pointer;
 	min-height: calc(2em + 2em * (0.9 - 0.85)); /* "input" font size minus ".button" font size */
@@ -1115,7 +1460,7 @@ a[class^="mobile_generic_menu_"] {
 }
 #top_info {
 	padding: 5px 0;
-	line-height: 1.3em;
+	line-height: 1.3rem;
 	max-width: 100%;
 }
 #pm_menu, #alerts_menu, #profile_menu {
@@ -1156,7 +1501,7 @@ a[class^="mobile_generic_menu_"] {
 }
 /* The main title. */
 h1.forumtitle {
-	font-size: 1.8em;
+	font-size: 1.8rem;
 	font-family: "Tahoma", sans-serif;
 	padding: 22px 12px 6px 10px;
 	font-weight: normal;
@@ -1169,7 +1514,7 @@ h1.forumtitle a {
 /* Float these items to the right */
 #siteslogan, img#smflogo {
 	padding-right: 2px;
-	font-size: 1.4em;
+	font-size: 1.4rem;
 }
 /* Tweak the SMF logo */
 img#smflogo {
@@ -1178,7 +1523,7 @@ img#smflogo {
 /* Even guests need to be aligned */
 .welcome {
 	padding: 0 10px;
-	line-height: 2.5em;
+	line-height: 2.5rem;
 }
 /*
 /* The user info, news, etc.*/
@@ -1204,7 +1549,7 @@ img#smflogo {
 }
 .user {
 	padding: 0 4px 8px 4px;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	white-space: nowrap;
 }
 .user:only-child {
@@ -1228,13 +1573,13 @@ ul li.greeting {
 /* The login form. */
 #guest_form {
 	overflow: hidden;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	margin-left: -2px;
 }
 /* News section. */
 #inner_wrap .news {
 	padding: 0 0 8px 1ch;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	display: flex;
 	align-items: baseline;
 	max-width: 50%;
@@ -1261,7 +1606,7 @@ ul li.greeting {
 .navigate_section ul {
 	margin: 4px 0 0 0;
 	padding: 0 10px;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	overflow: hidden;
 	border: 1px solid #ddd;
 	border-radius: 2px;
@@ -1270,7 +1615,7 @@ ul li.greeting {
 .navigate_section ul li {
 	float: left;
 	padding-bottom: 3px;
-	line-height: 1.1em;
+	line-height: 1.1rem;
 	color: #444;
 	text-shadow: 1px 1px 0 #fff;
 }
@@ -1319,7 +1664,7 @@ ul li.greeting {
 	flex: none;
 }
 #footer li, #footer p, #footer a {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	color: #fff;
 }
 #footer li.copyright {
@@ -1348,7 +1693,7 @@ ul li.greeting {
 #index_common_stats {
 	margin: -4px 8px 6px 8px;
 	padding: 4px 0 0 0;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	border-top: 1px solid #ddd;
 }
 
@@ -1421,9 +1766,9 @@ ul li.greeting {
 }
 .post_options ul a {
 	display: block;
-	width: 12em;
+	width: 12rem;
 	padding: 0 6px;
-	line-height: 2.2em;
+	line-height: 2.2rem;
 	text-decoration: none;
 	border: 1px solid transparent;
 	border-radius: 3px;
@@ -1450,7 +1795,7 @@ ul li.greeting {
 	padding: 5px 0;
 	margin: 4px 0;
 	float: right;
-	font-size: 1em;
+	font-size: 1rem;
 }
 #topic_icons #message_index_jump_to {
 	padding: 0;
@@ -1499,7 +1844,7 @@ ul li.greeting {
 .event_options_left {
 	box-sizing: border-box;
 	width: 49%;
-	padding-right: 1em;
+	padding-right: 1rem;
 	min-width: 238px;
 }
 .event_options_right {
@@ -1638,10 +1983,10 @@ fieldset.merge_options {
 }
 
 .login input[type="submit"] {
-	margin: 1em 0 0 1em;
+	margin: 1em 0 0 1rem;
 }
 .login p:not(:last-of-type) input[type="submit"] {
-	margin-bottom: 1em;
+	margin-bottom: 1rem;
 }
 
 /* Additional register fields */
@@ -2132,7 +2477,7 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 .errorbox h3 {
 	padding: 0;
 	margin: 0;
-	font-size: 1.1em;
+	font-size: 1.1rem;
 	text-decoration: underline;
 }
 .errorbox p {
@@ -2143,7 +2488,7 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	margin: 0 4px 0 0;
 	float: left;
 	width: 12px;
-	font-size: 1.5em;
+	font-size: 1.5rem;
 }
 .errorbox span {
 	text-decoration: underline;
@@ -2183,7 +2528,7 @@ tr.windowbg td, tr.bg td, .table_grid tr td {
 	border: 1px solid #cecaca;
 	background: #fff;
 	min-height: 16px;
-	line-height: 1.4em;
+	line-height: 1.4rem;
 	border-radius: 2px;
 	position: relative;
 	overflow: hidden;
@@ -2268,7 +2613,7 @@ dl {
 	margin-bottom: 3px;
 }
 #basicinfo h4 {
-	font-size: 1.4em;
+	font-size: 1.4rem;
 	font-weight: normal;
 	-webkit-hyphens: auto;
 	-ms-hyphens: auto;
@@ -2277,7 +2622,7 @@ dl {
 	overflow-wrap: break-word;
 }
 #basicinfo h4 span.position {
-	font-size: 0.8em;
+	font-size: 0.8rem;
 	display: block;
 }
 #basicinfo img.avatar, dl.settings img.avatar {
@@ -2339,7 +2684,7 @@ dl {
 	margin-left: 10px;
 }
 .edit_avatar_img {
-	margin: 0 0 1em;
+	margin: 0 0 1rem;
 }
 
 /* Activity by time */
@@ -2373,8 +2718,8 @@ dl {
 }
 .activity_stats li .generic_bar span {
 	position: absolute;
-	top: -1000em;
-	left: -1000em;
+	top: -1000rem;
+	left: -1000rem;
 }
 
 .profile_pie {
@@ -2384,7 +2729,7 @@ dl {
 	height: 20px;
 	width: 20px;
 	margin: 0 12px 0 0;
-	text-indent: -1000em;
+	text-indent: -1000rem;
 }
 
 /* View posts */
@@ -2393,7 +2738,7 @@ dl {
 }
 .counter {
 	padding: 5px 6px 1px 2px;
-	font-size: 2.2em;
+	font-size: 2.2rem;
 	font-weight: bold;
 	color: #3f3f3f;
 	float: left;
@@ -2407,9 +2752,9 @@ dl {
 .list_posts {
 	border-top: 1px solid #ddd;
 	box-shadow: 0 1px 0 #fff inset;
-	padding-top: 1em;
-	margin-top: 1em;
-	margin-bottom: 1em;
+	padding-top: 1rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 	clear: both;
 	-webkit-hyphens: auto;
 	-ms-hyphens: auto;
@@ -2460,7 +2805,7 @@ dl {
 	font-weight: bold;
 	border-bottom: 1px solid #c4c4c4;
 	display: block;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5rem;
 }
 .boardslist a:hover {
 	text-decoration: none;
@@ -2511,7 +2856,7 @@ dl {
 /* Issue a warning */
 #warn_body {
 	width: 100%;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 }
 #warn_temp {
 	font-size: smaller;
@@ -2547,16 +2892,16 @@ dl.stats dt {
 	width: 50%;
 	float: left;
 	margin: 0 0 4px 0;
-	line-height: 1.5em;
+	line-height: 1.5rem;
 	clear: both;
-	font-size: 1em;
+	font-size: 1rem;
 	overflow: hidden;
 	word-wrap: break-word; /* IE fallback */
 	overflow-wrap: break-word;
 }
 dl.stats dd {
 	width: 48%;
-	font-size: 1em;
+	font-size: 1rem;
 	float: left;
 	margin: 0 0 4px 2%;
 }
@@ -2575,11 +2920,11 @@ dl.stats {
 }
 #stats tr.windowbg th.stats_month {
 	width: 25%;
-	padding: 0 2em;
+	padding: 0 2rem;
 	text-align: left;
 }
 #stats tr.windowbg td.stats_day {
-	padding: 0 3.5em;
+	padding: 0 3.5rem;
 	text-align: left;
 }
 
@@ -2593,7 +2938,7 @@ dl.stats {
 	margin: 0 0 0 6px;
 }
 #personal_messages h3 span#topic_title {
-	margin: 0 0 0 9em;
+	margin: 0 0 0 9rem;
 }
 #personal_messages div.labels {
 	padding: 0 12px 0 0;
@@ -2604,7 +2949,7 @@ dl.stats {
 	margin: 6px 0 0 12px;
 	height: 12px;
 	border: 1px solid #adadad;
-	width: 10em;
+	width: 10rem;
 }
 #personal_messages .capacity_bar span {
 	border-right: 1px solid #adadad;
@@ -2621,7 +2966,7 @@ dl.stats {
 	background: #f10909;
 }
 #personal_messages .reportlinks {
-	padding: 6px 1.3em;
+	padding: 6px 1.3rem;
 }
 #personal_messages .pm_inline_time {
 	display: none;
@@ -2633,7 +2978,7 @@ dl.stats {
 	padding: 4px 1px;
 }
 dl.addrules dt.floatleft {
-	width: 15em;
+	width: 15rem;
 	color: #333;
 	padding: 0 15px 6px 15px;
 }
@@ -2677,7 +3022,7 @@ dl.addrules dt.floatleft {
 #alerts .alert_image span.alert_icon {
 	display: block;
 	width: 100%;
-	line-height: 1em;
+	line-height: 1rem;
 }
 #alerts .alert_image .avatar + .alert_icon {
 	width: auto;
@@ -2772,10 +3117,10 @@ dl.addrules dt.floatleft {
 }
 #helpmain p {
 	margin: 10px 0;
-	line-height: 1.5em;
+	line-height: 1.5rem;
 }
 #helpmain ul {
-	line-height: 2em;
+	line-height: 2rem;
 	margin: 0 0 0 25px;
 }
 #helpmain ul li {
@@ -2843,8 +3188,8 @@ dl.addrules dt.floatleft {
 }
 .popup_content {
 	color: #222;
-	line-height: 1.6em;
-	max-height: 30em;
+	line-height: 1.6rem;
+	max-height: 30rem;
 	overflow: auto;
 	padding: 10px 8px;
 	border: 1px solid #bbb;
@@ -2938,7 +3283,7 @@ div#editlang_desc {
 	margin-bottom: 8px;
 }
 .topic_details .smalltext {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 }
 .table_grid tr.windowbg td.centercol {
 	text-align: center;
@@ -3042,18 +3387,18 @@ h3 .collapse {
 }
 .info .subject {
 	font-weight: 600;
-	font-size: 1.1em;
+	font-size: 1.1rem;
 	color: #a85400;
 }
 .board_stats {
 	width: 15%;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	margin: 0 0 0 auto;
 	text-align: center;
 }
 .lastpost {
 	width: 30%;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	padding-top: 3px;
 }
 .board_icon, .info, .board_stats, .lastpost {
@@ -3077,7 +3422,7 @@ h3 .collapse {
 	width: 100%;
 }
 .children p {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 }
 .children span::after {
 	content: ", ";
@@ -3086,7 +3431,7 @@ h3 .collapse {
 	content: "";
 }
 p.moderators {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	font-weight: bold;
 }
 span.postby {
@@ -3106,10 +3451,10 @@ span.postby {
 	margin-top: 4px;
 }
 #ic_recentposts {
-	line-height: 1.6em;
+	line-height: 1.6rem;
 	width: 98%;
 	margin: -2px 0 0 23px;
-	font-size: 0.9em;
+	font-size: 0.9rem;
 }
 #ic_recentposts th {
 	text-align: left;
@@ -3145,8 +3490,8 @@ span.postby {
 	border: none;
 	margin: 0;
 	padding: 2px 29px;
-	line-height: 1.6em;
-	font-size: 0.9em;
+	line-height: 1.6rem;
+	font-size: 0.9rem;
 }
 #upshrink_stats p.inline span {
 	margin: 0;
@@ -3178,7 +3523,7 @@ span.postby {
 }
 #topic_header div {
 	font-weight: bold;
-	font-size: 1em;
+	font-size: 1rem;
 	padding: 0;
 }
 #topic_header input {
@@ -3222,12 +3567,12 @@ span.postby {
 	content: "";
 }
 #topic_icons .information {
-	font-size: .9em;
+	font-size: .9rem;
 	border-radius: 4px;
 }
 #topic_icons p {
 	padding: 0 12px 0 4px;
-	line-height: 2em;
+	line-height: 2rem;
 }
 /* Should lose this before RC1. It's a kludge. Can be fixed by new image */
 #topic_icons .floatleft img:first-child {
@@ -3248,12 +3593,12 @@ span.postby {
 /* Poll results */
 #poll_options dl.options {
 	padding: 12px 0 12px 25px;
-	line-height: 1.4em;
+	line-height: 1.4rem;
 }
 #poll_options dl.options dt {
 	padding: 4px 0;
 	width: 30%;
-	max-width: 30em;
+	max-width: 30rem;
 	float: left;
 	clear: left;
 }
@@ -3262,7 +3607,7 @@ span.postby {
 }
 #poll_options dl.options dd {
 	width: 60%;
-	max-width: 45em;
+	max-width: 45rem;
 	float: left;
 	margin: 0 0 4px 0;
 	text-align: right;
@@ -3292,7 +3637,7 @@ div#pollmoderation {
 	vertical-align: middle;
 }
 .event_title + a {
-	margin-left: 1em;
+	margin-left: 1rem;
 }
 
 /* On to the posts */
@@ -3310,7 +3655,7 @@ div#pollmoderation {
 #forumposts .catbg span {
 	white-space: pre;
 	/* Specific sizing for clarity without ClearType. */
-	font-size: 0.818em;
+	font-size: 0.818rem;
 	font-weight: normal;
 	padding: 2px 0;
 }
@@ -3332,7 +3677,7 @@ div#pollmoderation {
 	overflow-wrap: break-word;
 }
 .poster h4 {
-	font-size: 1.2em;
+	font-size: 1.2rem;
 }
 .poster h4, .poster h4 a, .poster li:hover h4 a, .poster h4 a:hover .poster li h4 a, .poster h4 a:focus {
 	margin: 0;
@@ -3359,7 +3704,7 @@ div#pollmoderation {
 }
 .poster li.poster_online a {
 	color: #c06002;
-	line-height: 1.6em;
+	line-height: 1.6rem;
 }
 .poster li.poster_online:hover, .poster li.poster_online:hover a {
 	text-decoration: underline;
@@ -3394,8 +3739,8 @@ img.avatar {
 }
 .keyinfo .postinfo {
 	padding: 1px 0 5px 0;
-	line-height: 1.5em;
-	font-size: 0.9em;
+	line-height: 1.5rem;
+	font-size: 0.9rem;
 	font-weight: bold;
 	display: flex;
 	flex-flow: row wrap;
@@ -3429,7 +3774,7 @@ img.avatar {
 	content: " - ";
 }
 .subject_title a {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 	color: #333;
 	font-weight: bold;
 }
@@ -3440,7 +3785,7 @@ img.avatar {
 	color: #ad6825;
 	font-weight: bold;
 	padding: 4px 0 0 4px;
-	line-height: 1.5em;
+	line-height: 1.5rem;
 }
 .inner {
 	padding: 7px 8px 2px 2px;
@@ -3535,7 +3880,7 @@ ul.post_options li {
 	float: left;
 }
 #post_additional_options_header {
-	margin-top: 0.5em;
+	margin-top: 0.5rem;
 }
 #post_additional_options {
 	overflow: hidden;
@@ -3633,8 +3978,8 @@ ul.post_options li {
 	padding: 12px 0 3px 0;
 	border-top: 1px solid #bfbfbf;
 	box-shadow: 0 1px 0 #fff inset;
-	line-height: 1.4em;
-	font-size: 0.9em;
+	line-height: 1.4rem;
+	font-size: 0.9rem;
 }
 .under_message {
 	overflow: visible;
@@ -3705,7 +4050,7 @@ div.cat_bar {
 .cat_bar .desc {
 	color: #fff;
 	font-size: 12px;
-	line-height: 1.5em;
+	line-height: 1.5rem;
 	font-weight: normal;
 	margin: -8px 0 4px 8px;
 }
@@ -3715,7 +4060,7 @@ div.cat_bar {
 }
 h3.catbg {
 	overflow: hidden;
-	font-size: 1.1em;
+	font-size: 1.1rem;
 	font-family: "Tahoma", sans-serif;
 }
 h3.catbg, h3.catbg a, h3.catbg a:hover {
@@ -3788,7 +4133,7 @@ h3.titlebg, h4.titlebg, .titlebg, h3.subbg, h4.subbg, .subbg {
 .information {
 	background: #f8f8f8;
 	overflow: auto;
-	padding-bottom: .5em;
+	padding-bottom: .5rem;
 	border: 1px solid #ddd;
 	border-top: none;
 	border-radius: 0 0 7px 7px;
@@ -3813,7 +4158,7 @@ p.information img {
 	border-top: 1px solid #ddd;
 }
 .topic_pages {
-	font-size: 0.75em;
+	font-size: 0.75rem;
 	margin: 0 0 0 5px;
 }
 .topic_pages::before {
@@ -3959,11 +4304,11 @@ h3.profile_hd::before,
 
 /* Topic/Board follow-alert menu */
 .notify_dropdown strong {
-	font-size: 1.1em;
+	font-size: 1.1rem;
 }
 .notify_dropdown a {
 	display: block;
-	padding: 0.5em;
+	padding: 0.5rem;
 	text-decoration: none;
 	border: 1px solid transparent;
 	border-radius: 3px;
@@ -3972,7 +4317,7 @@ h3.profile_hd::before,
 	border-color: #ddd;
 }
 .notify_dropdown span {
-	font-size: 0.9em;
+	font-size: 0.9rem;
 }
 
 /* Some new stuff */
@@ -3989,8 +4334,8 @@ h3.profile_hd::before,
 .display_title {
 	font-weight: normal;
 	font-size: 26px;
-	margin-bottom: 0.25em;
-	line-height: 1.05em;
+	margin-bottom: 0.25rem;
+	line-height: 1.05rem;
 	overflow-wrap: break-word;
 }
 
@@ -4096,7 +4441,7 @@ input[name="attachBBC"] {
 	display: inline-block;
 }
 .attachment_info input[type="number"] {
-	width: 5em;
+	width: 5rem;
 }
 #attachment_upload {
 	min-height: 50px;
@@ -4200,9 +4545,9 @@ tr[id^='list_news_lists_'] textarea {
 }
 
 .backtrace:not(:last-child) {
-	padding-bottom: 0.5em;
+	padding-bottom: 0.5rem;
 	border-bottom: 1px solid #ddd;
-	margin-bottom: 0.5em;
+	margin-bottom: 0.5rem;
 }
 
 /* To break or not to break that is the question indeed */
