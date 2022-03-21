@@ -422,7 +422,7 @@ function template_menu()
 		echo '
 					<li class="button_', $act, '', !empty($button['sub_buttons']) ? ' subsections"' : '"', '>
 						<a', $button['active_button'] ? ' class="active"' : '', ' href="', $button['href'], '"', isset($button['target']) ? ' target="' . $button['target'] . '"' : '', isset($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : '', '>
-							', $button['icon'], '<span class="textmenu">', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '</span>
+							', $button['title'], !empty($button['amt']) ? ' <span class="amt">' . $button['amt'] . '</span>' : '', '
 						</a>';
 
 		// 2nd level menus

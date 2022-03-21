@@ -55,6 +55,9 @@ function template_main()
 {
 	global $context, $txt, $scripturl;
 
+	echo 'Boardindex';
+	return;
+
 	echo '
 	<div id="boardindex_table" class="boardindex_table">';
 
@@ -287,6 +290,9 @@ function template_info_center()
 {
 	global $context, $options, $txt;
 
+	echo 'Infocenter';
+	return; 
+	
 	if (empty($context['info_center']))
 		return;
 
