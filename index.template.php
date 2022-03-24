@@ -413,7 +413,6 @@ function template_menu()
 	global $context;
 
 	echo '
-			<nav class="b_nav_menu">
 				<ul>';
 
 	// Note: Menu markup has been cleaned up to remove unnecessary spans and classes.
@@ -467,8 +466,7 @@ function template_menu()
 	}
 
 	echo '
-				</ul>
-			</nav>';
+				</ul>';
 }
 
 /**
