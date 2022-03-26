@@ -145,15 +145,12 @@ function template_body_above()
 			{
 				// Firstly, the user's menu
 				echo '
-				<ul class="floatleft" id="top_info">
+				<ul id="top_info">
 					<li>
-						<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">';
-		
-				if (!empty($context['user']['avatar']))
-					echo $context['user']['avatar']['image'];
-		
-				echo '<span class="textmenu">', $context['user']['name'], '</span></a>
-						<div id="profile_menu" class="top_menu"></div>
+						<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">
+							', $context['user']['name'], '
+						</a>
+						<ul id="profile_menu" class="top_menu"></ul>
 					</li>';
 		
 				// Secondly, PMs if we're doing them
@@ -161,8 +158,7 @@ function template_body_above()
 					echo '
 					<li>
 						<a href="', $scripturl, '?action=pm"', !empty($context['self_pm']) ? ' class="active"' : '', ' id="pm_menu_top">
-							<span class="main_icons inbox"></span>
-							<span class="textmenu">', $txt['pm_short'], '</span>', !empty($context['user']['unread_messages']) ? '
+							', $txt['pm_short'], ' ', !empty($context['user']['unread_messages']) ? '
 							<span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '
 						</a>
 						<div id="pm_menu" class="top_menu scrollable"></div>
@@ -172,8 +168,7 @@ function template_body_above()
 				echo '
 					<li>
 						<a href="', $scripturl, '?action=profile;area=showalerts;u=', $context['user']['id'], '"', !empty($context['self_alerts']) ? ' class="active"' : '', ' id="alerts_menu_top">
-							<span class="main_icons alerts"></span>
-							<span class="textmenu">', $txt['alerts'], '</span>', !empty($context['user']['alerts']) ? '
+							', $txt['alerts'], ' ', !empty($context['user']['alerts']) ? '
 							<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
 						</a>
 						<div id="alerts_menu" class="top_menu scrollable"></div>
@@ -198,14 +193,14 @@ function template_body_above()
 				if (!empty($settings['login_main_menu']))
 				{
 					echo '
-				<ul class="floatleft">
+				<ul>
 					<li class="welcome">', sprintf($txt[$context['can_register'] ? 'welcome_guest_register' : 'welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return reqOverlayDiv(this.href, ' . JavaScriptEscape($txt['login']) . ', \'login\');', $scripturl . '?action=signup'), '</li>
 				</ul>';
 				}
 				else
 				{
 					echo '
-				<ul class="floatleft" id="top_info">
+				<ul id="top_info">
 					<li class="welcome">
 						', sprintf($txt['welcome_to_forum'], $context['forum_name_html_safe']), '
 					</li>
@@ -227,14 +222,14 @@ function template_body_above()
 			else
 				// In maintenance mode, only login is allowed and don't show OverlayDiv
 				echo '
-				<ul class="floatleft welcome">
+				<ul class="welcome">
 					<li>', sprintf($txt['welcome_guest'], $context['forum_name_html_safe'], $scripturl . '?action=login', 'return true;'), '</li>
 				</ul>';
 		
 			if (!empty($modSettings['userLanguage']) && !empty($context['languages']) && count($context['languages']) > 1)
 			{
 				echo '
-				<form id="languages_form" method="get" class="floatright">
+				<form id="languages_form" method="get">
 					<select id="language_select" name="language" onchange="this.form.submit()">';
 		
 				foreach ($context['languages'] as $language)
@@ -252,7 +247,7 @@ function template_body_above()
 			if ($context['allow_search'])
 			{
 				echo '
-				<form id="search_form" class="floatright" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
+				<form id="search_form" action="', $scripturl, '?action=search2" method="post" accept-charset="', $context['character_set'], '">
 					<input type="search" name="search" value="">&nbsp;';
 		
 				// Using the quick search dropdown?
