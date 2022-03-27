@@ -161,7 +161,7 @@ function template_body_above()
 							', $txt['pm_short'], ' ', !empty($context['user']['unread_messages']) ? '
 							<span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '
 						</a>
-						<div id="pm_menu" class="top_menu scrollable"></div>
+						<ul id="pm_menu" class="top_menu"></ul>
 					</li>';
 		
 				// Thirdly, alerts
@@ -171,7 +171,7 @@ function template_body_above()
 							', $txt['alerts'], ' ', !empty($context['user']['alerts']) ? '
 							<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
 						</a>
-						<div id="alerts_menu" class="top_menu scrollable"></div>
+						<ul id="alerts_menu" class="top_menu"></ul>
 					</li>';
 		
 				// A logout button for people without JavaScript.

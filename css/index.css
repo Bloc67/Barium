@@ -1196,9 +1196,7 @@ a[class^="mobile_generic_menu_"] {
 	vertical-align: top;
 	max-width: calc(100% - 48px);
 }
-#pm_menu .subject {
-	font-weight: bold;
-}
+
 /* Levels 2 and 3 submenu wrapper. */
 .dropmenu li ul {
 	z-index: 90;
