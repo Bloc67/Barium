@@ -5,7 +5,7 @@
             "header_site header_site"
             "article aside_site"
             "footer_site footer_site";
-        grid-template-columns: 7fr 4fr;
+        grid-template-columns: 3fr 1fr;
         grid-template-rows: auto 1fr auto;
     }
     /* header site */
@@ -45,11 +45,13 @@
     }
     nav#b_nav_site ul li.subsections > a,
     #profile_menu_top,
-    #pm_menu_top {
+    #pm_menu_top,
+    #alerts_menu_top {
         color: white;
     }
     nav#b_nav_site ul li a:hover,
-    #profile_menu_top:hover, #pm_menu_top:hover {
+    #profile_menu_top:hover, #pm_menu_top:hover,
+    #alerts_menu_top:hover {
         text-decoration: none;
         color: white;
     }
@@ -68,7 +70,8 @@
     }
     nav#b_nav_site ul li ul,
     #profile_menu,
-    #pm_menu {
+    #pm_menu,
+    #alerts_menu {
        display: none;
        position: absolute;
        background: steelblue;
@@ -123,7 +126,6 @@
         background-position: 0 1px;
         margin-right: 0rem;
     }
-    
     
     .b_pm_unread dt, .b_pm_unread dd {
         display: grid;
@@ -207,6 +209,8 @@
     /* aside site */
     aside#b_aside_site {
         grid-area: aside_site;
+        padding: 1rem;
+        border-left: solid 4px #ddd;
     }
     
     /* article */
@@ -221,6 +225,29 @@
         font-size: 0.8rem;
         background: #0001;
     }
+    /* boardindex or any other tab section */
+    .b_section_tabs {
+        background: #eee;
+    }
+    .b_section_tabs ul {
+        display: flex;
+        padding: 0;
+    } 
+    .b_section_tabs ul li a {
+        display: block;
+        padding: 0.7rem 0.7rem 0.3rem 0.7rem;
+    } 
+    .b_section_tabs main {
+        padding: 0.3rem 0 1rem 0;
+    } 
+    .b_section_tabs main div {
+        background: white;
+        padding: 0.5rem 0.7rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    } 
+    
     
     
     }
