@@ -15,7 +15,30 @@
  */
 function template_boardindex_outer_above()
 {
+	global $txt;
+
 	template_newsfader();
+
+	echo '
+	<section id="b_boardindex_tabs" class="b_section_tabs">
+		<ul>
+			<li><a id="b_bi_1tab" class="b_tabs">' , $txt['b_bi_tab1'] , '</a></li>
+			<li><a id="b_bi_2tab" class="b_tabs">' , $txt['b_bi_tab2'] , '</a></li>
+		</ul>
+		<main>
+			<div id="b_bi_tab1_section" class="visible">
+				' , template_tab_bcats() , '
+				' , template_tab_boardlist() , '
+				' , template_tab_bdetail() , '
+			</div>
+			<div id="b_bi_tab1_section">
+				' , template_tab_ic() , '
+				' , template_tab_ic_selected() , '
+				' , template_tab_ic_selected2() , '
+			</div>
+		</main>
+	</section>			
+			';
 }
 
 /**
@@ -29,6 +52,7 @@ function template_newsfader()
 	if (!empty($settings['show_newsfader']) && !empty($context['news_lines']))
 	{
 		echo '
+	<section id="b_newsfader">
 		<ul id="smf_slider" class="roundframe">';
 
 		foreach ($context['news_lines'] as $news)
@@ -37,6 +61,7 @@ function template_newsfader()
 
 		echo '
 		</ul>
+	</section>	
 		<script>
 			jQuery("#smf_slider").slippry({
 				pause: ', $settings['newsfader_time'], ',
@@ -52,6 +77,15 @@ function template_newsfader()
  * This actually displays the board index
  */
 function template_main()
+{
+	global $context, $txt, $scripturl;
+
+	// just return, all work is done in the outer board template(..).
+	return;
+}
+
+/* show only the categories, with jumpers to each */
+function template_tab_bcats()
 {
 	global $context, $txt, $scripturl;
 
@@ -140,6 +174,188 @@ function template_main()
 		', template_button_strip($context['mark_read_button'], 'right'), '
 	</div>';
 }
+
+/* show the boardlist */
+function template_tab_boardlist()
+{
+	global $context, $txt, $scripturl;
+
+	echo 'Boardindex';
+	return;
+
+	echo '
+	<div id="boardindex_table" class="boardindex_table">';
+
+	/* Each category in categories is made up of:
+	id, href, link, name, is_collapsed (is it collapsed?), can_collapse (is it okay if it is?),
+	new (is it new?), collapse_href (href to collapse/expand), collapse_image (up/down image),
+	and boards. (see below.) */
+	foreach ($context['categories'] as $category)
+	{
+		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
+		if (empty($category['boards']) && !$category['is_collapsed'])
+			continue;
+
+		echo '
+		<div class="main_container">
+			<div class="cat_bar ', $category['is_collapsed'] ? 'collapsed' : '', '" id="category_', $category['id'], '">
+				<h3 class="catbg">';
+
+		// If this category even can collapse, show a link to collapse it.
+		if ($category['can_collapse'])
+			echo '
+					<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
+
+		echo '
+					', $category['link'], '
+				</h3>', !empty($category['description']) ? '
+				<div class="desc">' . $category['description'] . '</div>' : '', '
+			</div>
+			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+
+		/* Each board in each category's boards has:
+		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
+		children (see below.), link_children (easier to use.), children_new (are they new?),
+		topics (# of), posts (# of), link, href, and last_post. (see below.) */
+		foreach ($category['boards'] as $board)
+		{
+			echo '
+				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">
+					<div class="board_icon">
+						', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
+					</div>
+					<div class="info">
+						', function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board), '
+					</div><!-- .info -->';
+
+			// Show some basic information about the number of posts, etc.
+			echo '
+					<div class="board_stats">
+						', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board), '
+					</div>';
+
+			// Show the last post if there is one.
+			echo'
+					<div class="lastpost">
+						', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board), '
+					</div>';
+
+			// Won't somebody think of the children!
+			if (function_exists('template_bi_' . $board['type'] . '_children'))
+				call_user_func('template_bi_' . $board['type'] . '_children', $board);
+			else
+				template_bi_board_children($board);
+
+			echo '
+				</div><!-- #board_[id] -->';
+		}
+
+		echo '
+			</div><!-- #category_[id]_boards -->
+		</div><!-- .main_container -->';
+	}
+
+	echo '
+	</div><!-- #boardindex_table -->';
+
+	// Show the mark all as read button?
+	if ($context['user']['is_logged'] && !empty($context['categories']))
+		echo '
+	<div class="mark_read">
+		', template_button_strip($context['mark_read_button'], 'right'), '
+	</div>';
+}
+/* show only the categories, with jumpers to each */
+function template_tab_bdetail()
+{
+	global $context, $txt, $scripturl;
+
+	echo 'Boardindex';
+	return;
+
+	echo '
+	<div id="boardindex_table" class="boardindex_table">';
+
+	/* Each category in categories is made up of:
+	id, href, link, name, is_collapsed (is it collapsed?), can_collapse (is it okay if it is?),
+	new (is it new?), collapse_href (href to collapse/expand), collapse_image (up/down image),
+	and boards. (see below.) */
+	foreach ($context['categories'] as $category)
+	{
+		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
+		if (empty($category['boards']) && !$category['is_collapsed'])
+			continue;
+
+		echo '
+		<div class="main_container">
+			<div class="cat_bar ', $category['is_collapsed'] ? 'collapsed' : '', '" id="category_', $category['id'], '">
+				<h3 class="catbg">';
+
+		// If this category even can collapse, show a link to collapse it.
+		if ($category['can_collapse'])
+			echo '
+					<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
+
+		echo '
+					', $category['link'], '
+				</h3>', !empty($category['description']) ? '
+				<div class="desc">' . $category['description'] . '</div>' : '', '
+			</div>
+			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+
+		/* Each board in each category's boards has:
+		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
+		children (see below.), link_children (easier to use.), children_new (are they new?),
+		topics (# of), posts (# of), link, href, and last_post. (see below.) */
+		foreach ($category['boards'] as $board)
+		{
+			echo '
+				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">
+					<div class="board_icon">
+						', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
+					</div>
+					<div class="info">
+						', function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board), '
+					</div><!-- .info -->';
+
+			// Show some basic information about the number of posts, etc.
+			echo '
+					<div class="board_stats">
+						', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board), '
+					</div>';
+
+			// Show the last post if there is one.
+			echo'
+					<div class="lastpost">
+						', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board), '
+					</div>';
+
+			// Won't somebody think of the children!
+			if (function_exists('template_bi_' . $board['type'] . '_children'))
+				call_user_func('template_bi_' . $board['type'] . '_children', $board);
+			else
+				template_bi_board_children($board);
+
+			echo '
+				</div><!-- #board_[id] -->';
+		}
+
+		echo '
+			</div><!-- #category_[id]_boards -->
+		</div><!-- .main_container -->';
+	}
+
+	echo '
+	</div><!-- #boardindex_table -->';
+
+	// Show the mark all as read button?
+	if ($context['user']['is_logged'] && !empty($context['categories']))
+		echo '
+	<div class="mark_read">
+		', template_button_strip($context['mark_read_button'], 'right'), '
+	</div>';
+}
+
 
 /**
  * Outputs the board icon for a standard board.
@@ -275,83 +491,9 @@ function template_bi_board_children($board)
 	}
 }
 
-/**
- * The lower part of the outer layer of the board index
- */
 function template_boardindex_outer_below()
 {
-	template_info_center();
-}
-
-/**
- * Displays the info center
- */
-function template_info_center()
-{
-	global $context, $options, $txt;
-
-	echo 'Infocenter';
-	return; 
-	
-	if (empty($context['info_center']))
-		return;
-
-	// Here's where the "Info Center" starts...
-	echo '
-	<div class="roundframe" id="info_center">
-		<div class="title_bar">
-			<h3 class="titlebg">
-				<span class="toggle_up floatright" id="upshrink_ic" title="', $txt['hide_infocenter'], '" style="display: none;"></span>
-				<a href="#" id="upshrink_link">', sprintf($txt['info_center_title'], $context['forum_name_html_safe']), '</a>
-			</h3>
-		</div>
-		<div id="upshrink_stats"', empty($options['collapse_header_ic']) ? '' : ' style="display: none;"', '>';
-
-	foreach ($context['info_center'] as $block)
-	{
-		$func = 'template_ic_block_' . $block['tpl'];
-		$func();
-	}
-
-	echo '
-		</div><!-- #upshrink_stats -->
-	</div><!-- #info_center -->';
-
-	// Info center collapse object.
-	echo '
-	<script>
-		var oInfoCenterToggle = new smc_Toggle({
-			bToggleEnabled: true,
-			bCurrentlyCollapsed: ', empty($options['collapse_header_ic']) ? 'false' : 'true', ',
-			aSwappableContainers: [
-				\'upshrink_stats\'
-			],
-			aSwapImages: [
-				{
-					sId: \'upshrink_ic\',
-					altExpanded: ', JavaScriptEscape($txt['hide_infocenter']), ',
-					altCollapsed: ', JavaScriptEscape($txt['show_infocenter']), '
-				}
-			],
-			aSwapLinks: [
-				{
-					sId: \'upshrink_link\',
-					msgExpanded: ', JavaScriptEscape(sprintf($txt['info_center_title'], $context['forum_name_html_safe'])), ',
-					msgCollapsed: ', JavaScriptEscape(sprintf($txt['info_center_title'], $context['forum_name_html_safe'])), '
-				}
-			],
-			oThemeOptions: {
-				bUseThemeSettings: ', $context['user']['is_guest'] ? 'false' : 'true', ',
-				sOptionName: \'collapse_header_ic\',
-				sSessionId: smf_session_id,
-				sSessionVar: smf_session_var,
-			},
-			oCookieOptions: {
-				bUseCookie: ', $context['user']['is_guest'] ? 'true' : 'false', ',
-				sCookieName: \'upshrinkIC\'
-			}
-		});
-	</script>';
+	// not much to do here either...
 }
 
 /**
@@ -537,4 +679,51 @@ function template_ic_block_online()
 			</p>';
 }
 
+// not actually used, but for reference in case something else calls it
+function template_info_center()
+{
+	return;
+}
+
+// the infocenter part
+function template_tab_ic()
+{
+	global $context, $options, $txt;
+
+	echo 'Infocenter';
+	return; 
+	
+	if (empty($context['info_center']))
+		return;
+
+	// Here's where the "Info Center" starts...
+	echo '
+	<div class="roundframe" id="info_center">
+		<div class="title_bar">
+			<h3 class="titlebg">
+				<span class="toggle_up floatright" id="upshrink_ic" title="', $txt['hide_infocenter'], '" style="display: none;"></span>
+				<a href="#" id="upshrink_link">', sprintf($txt['info_center_title'], $context['forum_name_html_safe']), '</a>
+			</h3>
+		</div>
+		<div id="upshrink_stats"', empty($options['collapse_header_ic']) ? '' : ' style="display: none;"', '>';
+
+	foreach ($context['info_center'] as $block)
+	{
+		$func = 'template_ic_block_' . $block['tpl'];
+		$func();
+	}
+
+	echo '
+		</div><!-- #upshrink_stats -->
+	</div><!-- #info_center -->';
+}
+
+function template_tab_ic_selected() 
+{
+	echo 'Selected 1';
+}
+function template_tab_ic_selected2() 
+{
+	echo 'Selected 2';
+}
 ?>

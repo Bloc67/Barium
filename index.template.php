@@ -148,7 +148,7 @@ function template_body_above()
 				<ul id="top_info">
 					<li>
 						<a href="', $scripturl, '?action=profile"', !empty($context['self_profile']) ? ' class="active"' : '', ' id="profile_menu_top" onclick="return false;">
-							', $context['user']['name'], '
+							<b>', $context['user']['name'], '</b>
 						</a>
 						<ul id="profile_menu" class="top_menu"></ul>
 					</li>';
@@ -171,7 +171,7 @@ function template_body_above()
 							', $txt['alerts'], ' ', !empty($context['user']['alerts']) ? '
 							<span class="amt">' . $context['user']['alerts'] . '</span>' : '', '
 						</a>
-						<ul id="alerts_menu" class="top_menu"></ul>
+						<div id="alerts_menu" class="top_menu"></div>
 					</li>';
 		
 				// A logout button for people without JavaScript.
@@ -298,8 +298,8 @@ function template_body_above()
 	// Show a random news item? (or you could pick one from news_lines...)
 	if (!empty($settings['enable_news']) && !empty($context['random_news_line'])) {
 		echo '
-			<div class="news">
-				<h2>', $txt['news'], ': </h2>
+			<div class="b_aside_item">
+				<h2>', $txt['news'], '</h2>
 				<p>', $context['random_news_line'], '</p>
 			</div>';
 		}

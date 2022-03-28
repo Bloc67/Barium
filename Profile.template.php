@@ -77,23 +77,22 @@ function template_alerts_popup()
 	echo '
 		<ul>
 			<li><a href="' . $scripturl . '?action=profile;area=notification;sa=markread;', $context['session_var'], '=', $context['session_id'], '" onclick="return markAlertsRead(this)">', $txt['mark_alerts_read'], '</a></li>
-			<li><a href="', $scripturl, '?action=profile;area=notification;sa=alerts" class="floatright">', $txt['alert_settings'], '</a></li>
-			<li><a href="', $scripturl, '?action=profile;area=showalerts" class="button">', $txt['all_alerts'], '</a></li>';
+			<li><a href="', $scripturl, '?action=profile;area=notification;sa=alerts">', $txt['alert_settings'], '</a></li>
+			<li><a href="', $scripturl, '?action=profile;area=showalerts">', $txt['all_alerts'], '</a></li>';
 
 	if (empty($context['unread_alerts']))
 		template_alerts_all_read();
-
 	else
 	{
 		foreach ($context['unread_alerts'] as $id_alert => $details)
 		{
 			echo '
 			<li>
-				<', !$details['show_links'] ? 'a href="' . $scripturl . '?action=profile;area=showalerts;alert=' . $id_alert . '" onclick="this.classList.add(\'alert_read\')"' : 'span', ' class="unread_notify">
+				<', !$details['show_links'] ? 'a href="' . $scripturl . '?action=profile;area=showalerts;alert=' . $id_alert . '" onclick="this.classList.add(\'alert_read\')"' : 'a id="b_alertsall"', ' class="unread_notify">
 					', empty($details['sender']['avatar']['image']) ? '' : $details['sender']['avatar']['image'] . '
 					', $details['icon'], '
 					<span class="alert_text">', $details['text'], '</span> - <span class="alert_time">', $details['time'], '</span>
-				</', !$details['show_links'] ? 'a' : 'span', '>
+				</a>
 			</li>';
 		}
 	}
@@ -125,7 +124,7 @@ function template_alerts_all_read()
 {
 	global $txt;
 
-	echo '<div class="no_unread">', $txt['alerts_no_unread'], '</div>';
+	echo '<li><a id="b_allalertsread"><b>', $txt['alerts_no_unread'], '</b></a></li>';
 }
 
 /**

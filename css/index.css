@@ -498,7 +498,6 @@ summary {
 /* This gives a better effect for those areas, and will default to bold for fonts which do not support numerical font-weight */
 strong, .strong {
 	font-weight: bold;
-	color: #444;
 }
 .cat_bar strong {
 	color: #fff;
@@ -3207,9 +3206,6 @@ span.postby {
 #ic_recentposts .recenttime {
 	width: 25%;
 }
-#ic_recentposts .recenttime strong {
-	color: #555;
-}
 #ic_recentposts .windowbg {
 	background: none;
 }
@@ -3478,9 +3474,6 @@ img.avatar {
 	content: "";
 	clear: right;
 	display: block;
-}
-.keyinfo .postinfo a, .keyinfo .postinfo a strong {
-	color: #ad6825;
 }
 .keyinfo .postinfo .spacer {
 	flex: 1 1 auto;
