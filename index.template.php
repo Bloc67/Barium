@@ -55,8 +55,8 @@ function template_html_above()
 	
 	<meta charset="', $context['character_set'], '">';
 
+	loadCSSFile('barium.css', array('minimize' => false));
 	template_css();
-	loadCSSFile('barium.css', array('minimize' => true));
 	
 	template_javascript();
 	echo '

@@ -81,7 +81,7 @@ function template_pm_popup()
 				</dt>
                 <dd>
 					', $pm_details['replied_to_you'] ? '<span class="b_icon_replied" title="' . $txt['pm_you_were_replied_to'] . '"></span>' : '<span class="b_icon_new" title="' . $txt['pm_was_sent_to_you'] . '"></span>',
-					!empty($pm_details['member']) ? '<span>' .$pm_details['member']['link'].'</span>' : '<span>'.$pm_details['member_from'].'</span>', '<span>', $pm_details['time'], '</span>
+					!empty($pm_details['member']) ? $pm_details['member']['link'] : $pm_details['member_from'] , ' ', $pm_details['time'], '
 				</dd>
 			</dl>';
 	}

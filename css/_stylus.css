@@ -1,0 +1,253 @@
+@-moz-document url-prefix("http://localhost/web/smf21/") {
+    section#b_section_site {
+        display: grid;
+        grid-template-areas:
+            "header_site header_site"
+            "article aside_site"
+            "footer_site footer_site";
+        grid-template-columns: 7fr 4fr;
+        grid-template-rows: auto 1fr auto;
+    }
+    /* header site */
+    header#b_header_site {
+        grid-area: header_site;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 0 1rem;
+        background: steelblue;
+        color: white;
+    }
+    header#b_header_site h1 { 
+        padding: 1.15rem 1rem 1rem 1rem;
+        margin: 0;
+        font-size: 1.3rem;
+    }
+    
+    header#b_header_site a {
+        color: white;
+    }
+    #b_slogan {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        border-left: solid 1px #fff8;
+        padding: 1rem;
+        grid-gap: 1rem;
+    }
+    nav#b_nav_site ul, #top_info {
+       display: flex;
+       padding: 0;
+    }
+    nav#b_nav_site ul li a, #top_info li a {
+        display: block;
+        padding: 0.4rem 0.2rem;  
+        position: relative;
+        color: #fffb;
+    }
+    nav#b_nav_site ul li.subsections > a,
+    #profile_menu_top,
+    #pm_menu_top {
+        color: white;
+    }
+    nav#b_nav_site ul li a:hover,
+    #profile_menu_top:hover, #pm_menu_top:hover {
+        text-decoration: none;
+        color: white;
+    }
+    
+    nav#b_nav_site ul li a span,
+    #top_info span.amt {
+        padding: 0.07rem 0.3rem;
+        display: block;
+        font-size: 0.8rem;
+        background: coral;
+        font-weight: bold;
+        position: absolute;
+        top: -0.1rem;
+        right: -0.1rem;
+        border-radius: 2px;
+    }
+    nav#b_nav_site ul li ul,
+    #profile_menu,
+    #pm_menu {
+       display: none;
+       position: absolute;
+       background: steelblue;
+       margin-left: -0.6rem;
+       padding: 0;
+       min-width: 15rem;
+       z-index: 10;
+    }
+    nav#b_nav_site ul ul li a, #top_info .top_menu a,#top_info .top_menu dl  {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+    nav#b_nav_site ul ul li:last-of-type a, #top_info .top_menu li:last-of-type a  {
+        padding-bottom: 0.6rem;
+    }
+    nav#b_nav_site ul ul li a span {
+        top: 0.3rem;
+        right: 0.5rem;
+        background: orangered;
+    }
+    nav#b_nav_site ul li:hover ul {
+       display: block;
+    }
+    nav#b_nav_site ul li:hover > a {
+        color: white;
+    }
+    nav#b_nav_site ul li ul li a:hover,
+    #top_info .top_menu a:hover  {
+        background: #274d6c;
+        text-decoration: none;
+        color: white;
+    }
+    #b_user_site {
+        width: 100%;
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+    #top_info { display: flex; }
+    #top_info .top_menu {  display: none; }
+    #top_info .top_menu.visible {  display: block; }
+    
+    .b_pm_unread  {
+        max-height: 10rem;
+        overflow: auto;
+    }
+    .b_icon_new {
+        background-size: contain;
+        color: white;
+        height: 0.9rem;
+        display: inline-block;
+        background-repeat: no-repeat;
+        background-position: 0 1px;
+        margin-right: 0rem;
+    }
+    
+    
+    .b_pm_unread dt, .b_pm_unread dd {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 0 0.5rem;
+        background: #0004;
+        border-radius: 2px;
+        padding: 0.5rem;
+        font-size: 0.9rem !important;
+        color: white;
+    }
+    .b_pm_unread dd {
+        padding: 0.5rem;
+        margin: 3px 0 0 0;
+        grid-template-columns: 1.2rem auto auto 1fr;
+        grid-gap: 0 0.4rem;
+        background: #0002;
+    }
+    .b_pm_unread a {
+        display: inline;
+        line-height: 1rem;
+        padding: 0 !important;
+    }
+    #top_info .b_pm_unread a:hover {
+        background: none;
+        color: white;
+    }
+    #top_info .b_pm_unread dt span.b_avatar img.avatar {
+        max-height: 1rem !important;
+        margin: 0;
+    }
+    #pm_menu_top.open, #profile_menu_top.open {
+        color: navajowhite;
+    }
+    #pm_menu .b_pm_unread * {
+        font-size: 0.9rem !important;
+        color: white;
+    }
+    #pm_menu .b_pm_unread a {
+        color: navajowhite;
+    }
+    
+    /* quick search */
+    #search_form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: right;
+    }
+    #search_form input, #search_form select {
+        padding: 0 0.5rem;
+        line-height: 1.4rem;
+        height: 1.8rem;
+        background: none;
+        border: none;
+        border-bottom: solid 1px #fff8;
+        color: #fff8;
+        margin: 0 0 0.5rem 0.2rem;
+        text-transform: lowercase;
+        box-shadow: none;
+        border-radius: 0;
+    }
+    #search_form input:hover, #search_form select:hover,
+    #search_form input:focus, #search_form select:focus {
+        color: #fff;
+        background: none !important;
+    }
+    #search_form select *, #search_form input * {
+        color: #fff;
+        background: steelblue;
+        border: none;
+    }
+    #b_user_site form#search_form {
+        text-align: right;
+    }
+    
+    /* avatars */
+    #top_info .top_menu img.avatar {
+        max-height: 30px !important;
+    }
+    
+    /* aside site */
+    aside#b_aside_site {
+        grid-area: aside_site;
+    }
+    
+    /* article */
+    article#b_article {
+        grid-area: article;
+    }
+    
+    /* footer site */
+    footer#b_footer_site {
+        grid-area: footer_site;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        background: #0001;
+    }
+    
+    
+    }
+    
+    @-moz-document url-prefix("http://localhost/web/smf21/") {
+    @media only screen and (max-width: 1200px) {
+        #b_slogan {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    }
+    
+    @-moz-document url-prefix("http://localhost/web/smf21/") {
+    /* for admin areas */
+    body.action_admin section#b_section_site {
+        grid-template-areas:
+            "header_site"
+            "article"
+            "aside_site"
+            "footer_site";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto auto;
+    }
+    body.action_admin article#b_article {
+        padding: 1rem;
+    }
+    /* end admin areas */
+    
+    }
