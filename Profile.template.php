@@ -75,16 +75,10 @@ function template_alerts_popup()
 
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
 	echo '
-		<div class="alert_bar">
-			<div class="alerts_opts block">
-				<a href="' . $scripturl . '?action=profile;area=notification;sa=markread;', $context['session_var'], '=', $context['session_id'], '" onclick="return markAlertsRead(this)">', $txt['mark_alerts_read'], '</a>
-				<a href="', $scripturl, '?action=profile;area=notification;sa=alerts" class="floatright">', $txt['alert_settings'], '</a>
-			</div>
-			<div class="alerts_box centertext">
-				<a href="', $scripturl, '?action=profile;area=showalerts" class="button">', $txt['all_alerts'], '</a>
-			</div>
-		</div>
-		<div class="alerts_unread">';
+		<ul>
+			<li><a href="' . $scripturl . '?action=profile;area=notification;sa=markread;', $context['session_var'], '=', $context['session_id'], '" onclick="return markAlertsRead(this)">', $txt['mark_alerts_read'], '</a></li>
+			<li><a href="', $scripturl, '?action=profile;area=notification;sa=alerts" class="floatright">', $txt['alert_settings'], '</a></li>
+			<li><a href="', $scripturl, '?action=profile;area=showalerts" class="button">', $txt['all_alerts'], '</a></li>';
 
 	if (empty($context['unread_alerts']))
 		template_alerts_all_read();
@@ -94,20 +88,18 @@ function template_alerts_popup()
 		foreach ($context['unread_alerts'] as $id_alert => $details)
 		{
 			echo '
-			<', !$details['show_links'] ? 'a href="' . $scripturl . '?action=profile;area=showalerts;alert=' . $id_alert . '" onclick="this.classList.add(\'alert_read\')"' : 'div', ' class="unread_notify">
-				<div class="unread_notify_image">
+			<li>
+				<', !$details['show_links'] ? 'a href="' . $scripturl . '?action=profile;area=showalerts;alert=' . $id_alert . '" onclick="this.classList.add(\'alert_read\')"' : 'span', ' class="unread_notify">
 					', empty($details['sender']['avatar']['image']) ? '' : $details['sender']['avatar']['image'] . '
 					', $details['icon'], '
-				</div>
-				<div class="details">
 					<span class="alert_text">', $details['text'], '</span> - <span class="alert_time">', $details['time'], '</span>
-				</div>
-			</', !$details['show_links'] ? 'a' : 'div', '>';
+				</', !$details['show_links'] ? 'a' : 'span', '>
+			</li>';
 		}
 	}
 
 	echo '
-		</div><!-- .alerts_unread -->
+		</ul>
 		<script>
 			function markAlertsRead(obj) {
 				ajax_indicator(true);

@@ -161,7 +161,7 @@ function template_body_above()
 							', $txt['pm_short'], ' ', !empty($context['user']['unread_messages']) ? '
 							<span class="amt">' . $context['user']['unread_messages'] . '</span>' : '', '
 						</a>
-						<ul id="pm_menu" class="top_menu"></ul>
+						<div id="pm_menu" class="top_menu"></div>
 					</li>';
 		
 				// Thirdly, alerts

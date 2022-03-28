@@ -59,19 +59,19 @@ function template_pm_popup()
 
 	// Unlike almost every other template, this is designed to be included into the HTML directly via $().load()
 	echo '
-		<ul>
-    	    ', $context['can_send_pm'] ? '<li><a href="' . $scripturl . '?action=pm;sa=send">' . $txt['pm_new_short'] . '</a></li>' : '', '
-			', $context['can_draft'] ? ' <li><a href="' . $scripturl . '?action=pm;sa=showpmdrafts">' . $txt['pm_drafts_short'] . '</a></li>' : '', '
-			<li class="b_settingslink"><a href="', $scripturl, '?action=pm;sa=settings">', $txt['pm_settings_short'], '</a></li>
-			<li class="b_directlink"><a href="', $scripturl, '?action=pm">', $txt['inbox'], '</a></li>
-		</ul> 
-		<div class="b_pm_unread">';
+   	    ', $context['can_send_pm'] ? '<li><a href="' . $scripturl . '?action=pm;sa=send">' . $txt['pm_new_short'] . '</a></li>' : '', '
+		', $context['can_draft'] ? ' <li><a href="' . $scripturl . '?action=pm;sa=showpmdrafts">' . $txt['pm_drafts_short'] . '</a></li>' : '', '
+		<li class="b_settingslink"><a href="', $scripturl, '?action=pm;sa=settings">', $txt['pm_settings_short'], '</a></li>
+		<li class="b_directlink"><a href="', $scripturl, '?action=pm">', $txt['inbox'], '</a></li>';
 
 	if (empty($context['unread_pms']))
 		echo '
-			<h4>', $txt['pm_no_unread'], '</h4>';
+		<li><a id="b_nounread">', $txt['pm_no_unread'], '</li>';
 	else
 	{
+		echo '
+		<li class="b_pm_unread">';
+		
 		foreach ($context['unread_pms'] as $id_pm => $pm_details)
 			echo '
 			<dl>
@@ -84,6 +84,8 @@ function template_pm_popup()
 					!empty($pm_details['member']) ? $pm_details['member']['link'] : $pm_details['member_from'] , ' ', $pm_details['time'], '
 				</dd>
 			</dl>';
+		echo '
+		</li>';
 	}
 }
 
