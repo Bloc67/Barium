@@ -296,14 +296,18 @@ function template_body_above()
 		<aside id="b_aside_site">';
 
 	// Show a random news item? (or you could pick one from news_lines...)
-	if (!empty($settings['enable_news']) && !empty($context['random_news_line'])) {
-		echo '
+	if(function_exists('template_newsfader')) {
+		template_newsfader();
+	}
+	else {
+		if (!empty($settings['enable_news']) && !empty($context['random_news_line'])) {
+			echo '
 			<div class="b_aside_item">
 				<h2>', $txt['news'], '</h2>
 				<p>', $context['random_news_line'], '</p>
 			</div>';
-		}
-
+			}
+	}
 	echo '
 		</aside>
 		<article id="b_article">
@@ -318,23 +322,27 @@ function template_body_above()
  */
 function template_body_below()
 {
-	global $context, $txt, $scripturl, $modSettings;
+	global $context, $txt, $scripturl, $modSettings, $settings;
 
 	echo '
 			</main>
 		</article>
 		<footer id="b_footer_site">
 			<ul>
-				<li class="floatright"><a href="', $scripturl, '?action=help">', $txt['help'], '</a> ', (!empty($modSettings['requireAgreement'])) ? '| <a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a>' : '', ' | <a href="#top_section">', $txt['go_up'], ' &#9650;</a></li>
-				<li class="copyright">', theme_copyright(), '</li>
-			</ul>';
+				<li>', theme_copyright(), '
+				<li><a href=""><b>Barium</b> theme by Bloc67</a></li>
+				<li><a href="', $scripturl, '?action=help">', $txt['help'], '</a></li>
+				', (!empty($modSettings['requireAgreement'])) ? '
+				<li><a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a></li>' : '', 
+				'<li><a href="#top_section">', $txt['go_up'], '</a></li>';
 
-	// Show the load time?
+			// Show the load time?
 	if ($context['show_load_time'])
 		echo '
-			<p>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']), '</p>';
+				<li>', sprintf($txt['page_created_full'], $context['load_time'], $context['load_queries']),'</li>';
 
-	echo '
+	echo '			
+			</ul>
 		</footer>';
 }
 

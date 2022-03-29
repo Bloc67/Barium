@@ -221,10 +221,27 @@
     /* footer site */
     footer#b_footer_site {
         grid-area: footer_site;
-        padding: 0.5rem 1rem;
+        padding: 0 1rem;
         font-size: 0.8rem;
-        background: #0001;
+        background-color: #eee;
+        background-repeat: no-repeat;
+        background-position: 99% 32%;
+        background-size: 15%;
     }
+    footer#b_footer_site ul {
+        display: flex;
+        padding: 0.5rem 0;
+    }
+    footer#b_footer_site ul li:after { 
+        content: " |";
+        opacity: 0.5;
+        margin-right: 0.25rem;
+    }
+    footer#b_footer_site ul li:last-of-type:after { 
+        content: "";
+        margin-right: 0;
+    }
+    
     /* boardindex or any other tab section */
     .b_section_tabs {
         background: #eee;
@@ -247,6 +264,42 @@
         grid-template-columns: 1fr 1fr 1fr;
         grid-gap: 1rem;
     } 
+    
+    /* linktree*/
+    #b_nav_linktree {
+        background: #eee;
+        padding: 0.5rem 1rem;
+        overflow: hidden;
+        border-bottom: solid 4px #ddd;
+    }
+    #b_nav_linktree ul {
+        display: flex;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        opacity: 0.5;
+        margin: 0;
+    }
+    #b_nav_linktree:hover ul { opacity: 1;}
+    #b_nav_linktree ul li a:after {
+        content: " /";
+        margin-right: 0.2rem;
+    }
+    #b_nav_linktree ul li:last-of-type a {
+        font-weight: bold;
+    }
+    #b_nav_linktree ul li:last-of-type a:after {
+        content: "";
+        margin-right: 0;
+    }
+    #b_nav_linktree ul li a { 
+        display: block; 
+    }
+    #b_nav_linktree ul li a:hover {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    /* fader */
     
     
     

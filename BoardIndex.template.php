@@ -17,8 +17,6 @@ function template_boardindex_outer_above()
 {
 	global $txt;
 
-	template_newsfader();
-
 	echo '
 	<section id="b_boardindex_tabs" class="b_section_tabs">
 		<ul>
@@ -46,14 +44,14 @@ function template_boardindex_outer_above()
  */
 function template_newsfader()
 {
-	global $context, $settings;
+	global $context, $settings, $txt;
 
 	// Show the news fader?  (assuming there are things to show...)
 	if (!empty($settings['show_newsfader']) && !empty($context['news_lines']))
 	{
 		echo '
 	<section id="b_newsfader">
-		<ul id="smf_slider" class="roundframe">';
+		<ul id="smf_slider">';
 
 		foreach ($context['news_lines'] as $news)
 			echo '
