@@ -308,6 +308,11 @@ function template_body_above()
 			</div>';
 			}
 	}
+	// any buttons we want on the side?
+	if(function_exists('aside_buttons')) {
+		aside_buttons();
+	}
+
 	echo '
 		</aside>
 		<article id="b_article">
