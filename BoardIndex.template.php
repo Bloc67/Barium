@@ -20,7 +20,7 @@ function template_boardindex_outer_above()
 	echo '
 	<section id="b_boardindex_tabs" class="b_section_tabs">
 		<ul>
-			<li><a id="b_bi_1tab" class="b_tabs">' , $txt['b_bi_tab1'] , '</a></li>
+			<li><a id="b_bi_1tab" class="b_tabs active">' , $txt['b_bi_tab1'] , '</a></li>
 			<li><a id="b_bi_2tab" class="b_tabs">' , $txt['b_bi_tab2'] , '</a></li>
 		</ul>
 		<main>
@@ -97,15 +97,13 @@ function template_tab_bcats()
 			continue;
 
 		echo '
-		<dt>';
-
-		// If this category even can collapse, show a link to collapse it.
-		if ($category['can_collapse'])
-			echo '
-			<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
+		<dt>
+			<a href="#b_cat_' , $category['id'] , '">', $category['name'], '</a>
+			<ul class="b_sublinks">
+				<li><a href="' , $category['href'] , '">' , $txt['unread'] , '</a></li>';
 
 		echo '
-			', $category['link'], '
+			</ul>
 		</dt>
 		<dd>', !empty($category['description']) ? '
 			<p class="b_description">' . $category['description'] . '</p>' : '', '		
@@ -150,30 +148,14 @@ function template_tab_boardlist()
 		echo '
 			', $category['link'], '
 		</h3>
-		<div id="b_cat_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+		<ul id="b_cat_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
 		foreach ($category['boards'] as $board)
 		{
 			echo '
-				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">
-					<div class="board_icon">
-						', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
-					</div>
-					<div class="info">
-						', function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board), '
-					</div><!-- .info -->';
-
-			// Show some basic information about the number of posts, etc.
-			echo '
-					<div class="board_stats">
-						', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board), '
-					</div>';
-
-			// Show the last post if there is one.
-			echo'
-					<div class="lastpost">
-						', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board), '
-					</div>';
+			<li>
+				', function_exists('b_bi_' . $board['type'] . '_info') ? call_user_func('b_bi_' . $board['type'] . '_info', $board) : b_bi_board_info($board), '
+				', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board);
 
 			// Won't somebody think of the children!
 			if (function_exists('template_bi_' . $board['type'] . '_children'))
@@ -182,17 +164,15 @@ function template_tab_boardlist()
 				template_bi_board_children($board);
 
 			echo '
-				</div><!-- #board_[id] -->';
+			</li>';
 		}
-
 		echo '
-		</div>';
+		</ul>';
 	}
-
 	echo '
 	</div>';
 }
-/* show only the categories, with jumpers to each */
+/* show only the boards, with additional info */
 function template_tab_bdetail()
 {
 	global $context, $txt, $scripturl;
@@ -336,6 +316,30 @@ function template_bi_board_info($board)
 	if (!empty($board['link_moderators']))
 		echo '
 		<p class="moderators">', count($board['link_moderators']) == 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
+}
+
+
+function b_bi_board_info($board)
+{
+	global $context, $scripturl, $txt;
+	echo '
+		<a href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>';
+
+	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
+		echo '
+		<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link amt">!</a>';
+}
+function b_bi_board_icon($board)
+{
+	global $context, $scripturl;
+	echo '
+		<a href="', ($context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
+}
+function b_bi_redirect_icon($board)
+{
+	global $context, $scripturl;
+	echo '
+		<a href="', $board['href'], '" class="b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
 }
 
 /**
