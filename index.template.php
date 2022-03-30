@@ -541,6 +541,63 @@ function template_button_strip($button_strip, $direction = '', $strip_options = 
 		</div>';
 }
 
+
+// the theme button rendering, keeping the original to avoid crashes between admin sections and main sections
+function b_button_strip($button_strip, $direction = '', $strip_options = array())
+{
+	global $context, $txt;
+
+	if (!is_array($strip_options))
+		$strip_options = array();
+
+	// Create the buttons...
+	$buttons = array();
+	foreach ($button_strip as $key => $value)
+	{
+		// As of 2.1, the 'test' for each button happens while the array is being generated. The extra 'test' check here is deprecated but kept for backward compatibility (update your mods, folks!)
+		if (!isset($value['test']) || !empty($context[$value['test']]))
+		{
+			if (!isset($value['id']))
+				$value['id'] = $key;
+
+			$button = '
+				<li><a class="b_strip_' . $key . (!empty($value['active']) ? ' active' : '') . (isset($value['class']) ? ' ' . $value['class'] : '') . '" ' . (!empty($value['url']) ? 'href="' . $value['url'] . '"' : '') . ' ' . (isset($value['custom']) ? ' ' . $value['custom'] : '') . '>'.(!empty($value['icon']) ? '<span class="main_icons '.$value['icon'].'"></span>' : '').'' . $txt[$value['text']] . '</a>';
+
+			if (!empty($value['sub_buttons']))
+			{
+				$button .= '
+					<ul>';
+				foreach ($value['sub_buttons'] as $element)
+				{
+					if (isset($element['test']) && empty($context[$element['test']]))
+						continue;
+
+					$button .= '
+						<li><a href="' . $element['url'] . '">' . $txt[$element['text']];
+					if (isset($txt[$element['text'] . '_desc']))
+						$button .= '<span>' . $txt[$element['text'] . '_desc'] . '</span>';
+					$button .= '</a>
+						</li>';
+				}
+				$button .= '
+					</ul>';
+			}
+			$button .= '
+				</li>';
+			$buttons[] = $button;
+		}
+	}
+
+	// No buttons? No button strip either.
+	if (empty($buttons))
+		return;
+
+	echo '
+		<ul class="b_buttonlist"', (empty($buttons) ? ' style="display: none;"' : ''), (!empty($strip_options['id']) ? ' id="' . $strip_options['id'] . '"' : ''), '>
+			', implode('', $buttons), '
+		</ul>';
+}
+
 /**
  * Generate a list of quickbuttons.
  *

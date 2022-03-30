@@ -118,7 +118,7 @@ function aside_buttons()
 
 	// Show the mark all as read button?
 	if ($context['user']['is_logged'] && !empty($context['categories']))
-		template_button_strip($context['mark_read_button'], 'right');
+		b_button_strip($context['mark_read_button'], 'right');
 
 }
 
