@@ -29,7 +29,7 @@ function template_boardindex_outer_above()
 				' , template_tab_boardlist() , '
 				' , template_tab_bdetail() , '
 			</div>
-			<div id="b_bi_tab1_section">
+			<div id="b_bi_tab2_section">
 				' , template_tab_ic() , '
 				' , template_tab_ic_selected() , '
 				' , template_tab_ic_selected2() , '
@@ -88,7 +88,7 @@ function template_tab_bcats()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<ul id="b_bi_cats">';
+	<dl id="b_bi_cats">';
 
 	foreach ($context['categories'] as $category)
 	{
@@ -97,7 +97,7 @@ function template_tab_bcats()
 			continue;
 
 		echo '
-		<li>';
+		<dt>';
 
 		// If this category even can collapse, show a link to collapse it.
 		if ($category['can_collapse'])
@@ -106,11 +106,13 @@ function template_tab_bcats()
 
 		echo '
 			', $category['link'], '
-		</li>';
+		</dt>
+		<dd>', !empty($category['description']) ? '
+			<p class="b_description">' . $category['description'] . '</p>' : '', '		
+		</dd>';
 	}
-
 	echo '
-	</ul>';
+	</dl>';
 }
 function aside_buttons()
 {
@@ -128,16 +130,9 @@ function template_tab_boardlist()
 {
 	global $context, $txt, $scripturl;
 
-	echo 'Boardindex';
-	return;
-
 	echo '
-	<div id="boardindex_table" class="boardindex_table">';
+	<div id="b_bi_boards" class="b_boardindex">';
 
-	/* Each category in categories is made up of:
-	id, href, link, name, is_collapsed (is it collapsed?), can_collapse (is it okay if it is?),
-	new (is it new?), collapse_href (href to collapse/expand), collapse_image (up/down image),
-	and boards. (see below.) */
 	foreach ($context['categories'] as $category)
 	{
 		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
@@ -145,26 +140,18 @@ function template_tab_boardlist()
 			continue;
 
 		echo '
-		<div class="main_container">
-			<div class="cat_bar ', $category['is_collapsed'] ? 'collapsed' : '', '" id="category_', $category['id'], '">
-				<h3 class="catbg">';
+		<h3 class="b_cat ', $category['is_collapsed'] ? 'collapsed' : '', '" id="b_cat_', $category['id'], '">';
 
 		// If this category even can collapse, show a link to collapse it.
 		if ($category['can_collapse'])
 			echo '
-					<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
+			<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
 
 		echo '
-					', $category['link'], '
-				</h3>', !empty($category['description']) ? '
-				<div class="desc">' . $category['description'] . '</div>' : '', '
-			</div>
-			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+			', $category['link'], '
+		</h3>
+		<div id="b_cat_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
-		/* Each board in each category's boards has:
-		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
-		children (see below.), link_children (easier to use.), children_new (are they new?),
-		topics (# of), posts (# of), link, href, and last_post. (see below.) */
 		foreach ($category['boards'] as $board)
 		{
 			echo '
@@ -199,18 +186,10 @@ function template_tab_boardlist()
 		}
 
 		echo '
-			</div><!-- #category_[id]_boards -->
-		</div><!-- .main_container -->';
+		</div>';
 	}
 
 	echo '
-	</div><!-- #boardindex_table -->';
-
-	// Show the mark all as read button?
-	if ($context['user']['is_logged'] && !empty($context['categories']))
-		echo '
-	<div class="mark_read">
-		', template_button_strip($context['mark_read_button'], 'right'), '
 	</div>';
 }
 /* show only the categories, with jumpers to each */
