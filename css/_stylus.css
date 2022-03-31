@@ -258,12 +258,17 @@
         padding: 0.2rem 1rem 0 1rem;
         margin: 0;
     } 
-    .b_section_tabs ul li a {
+    .b_section_tabs > ul > li > a {
         display: block;
         padding: 0.3rem 0.7rem 0.4rem 0.7rem;
         border-radius: 3px 3px 0 0;
         font-size: 0.9rem;
         opacity: 0.7;
+    } 
+    .b_section_tabs ul li a:hover {
+        opacity: 1;
+        text-decoration: none;
+        color: orangered;
     } 
     .b_section_tabs ul li a.active {
         background: white;
@@ -275,9 +280,9 @@
     .b_section_tabs main > div {
         background: white;
         padding: 0.7rem 1rem 0.7rem 1.7rem;
-        display: grid;
         grid-template-columns: 1fr 2fr 1fr;
         grid-gap: 1rem;
+        display: none;
     } 
     .b_section_tabs main > div > * {
         border-right: solid 1px #ddd;
@@ -289,7 +294,9 @@
         line-height: 1.1rem;
         color: #777;
     }
-    
+    .b_section_tabs main > div.visible {
+        display: grid;
+    } 
     
     
     /* linktree*/
@@ -328,8 +335,38 @@
     
     /* fader */
     
-    
-    
+    /* boardindex */
+    .b_boardindex h3 {
+        font-weight: normal;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: #888;
+    }
+    .b_boardindex h3 a { color: #888; }
+    .b_boardindex h3 a:hover { color: #000; text-decoration: none; }
+    .b_boardindex > div > ul { 
+        display: grid;
+        padding: 0.5rem 0 1rem 0;
+        margin: 0;
+        grid-gap: 0.5rem 0;
+    }
+    a.b_board_off, a.b_board_on, a.b_board_on2, a.b_board_redirect {
+        display: block;
+        width: 0.4rem;
+        border-radius: 50%;
+        height: 0.4rem;
+        float: left;
+        margin: 0.35rem 0.6rem 0.4rem 0.4rem;
+        background: gainsboro;
+    }
+    a.b_board_on { background: orangered; } 
+    a.b_board_on2 { background: orange; } 
+    a.b_board_redirect { background: steelblue; }
+    ul.b_children {
+        padding: 0.2rem 0 0.2rem 1.45rem;
+        font-size: 0.8rem;
+        opacity: 0.7;
+    }
     }
     
     @-moz-document url-prefix("http://localhost/web/smf21/") {
