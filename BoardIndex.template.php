@@ -20,8 +20,8 @@ function template_boardindex_outer_above()
 	echo '
 	<section id="b_boardindex_tabs" class="b_section_tabs">
 		<ul>
-			<li><a id="b_bi_1tab" class="b_tabs active">' , $txt['b_bi_tab1'] , '</a></li>
-			<li><a id="b_bi_2tab" class="b_tabs">' , $txt['b_bi_tab2'] , '</a></li>
+			<li><a id="b_bi_1tab" data-item="b_bi_tab1_section" class="b_tabs active">' , $txt['b_bi_tab1'] , '</a></li>
+			<li><a id="b_bi_2tab"  data-item="b_bi_tab2_section" class="b_tabs">' , $txt['b_bi_tab2'] , '</a></li>
 		</ul>
 		<main>
 			<div id="b_bi_tab1_section" class="visible">
@@ -138,24 +138,25 @@ function template_tab_boardlist()
 			continue;
 
 		echo '
-		<h3 class="b_cat ', $category['is_collapsed'] ? 'collapsed' : '', '" id="b_cat_', $category['id'], '">';
+		<div id="b_cat_', $category['id'], '">
+			<h3 class="b_cat ', $category['is_collapsed'] ? 'collapsed' : '', '">';
 
 		// If this category even can collapse, show a link to collapse it.
 		if ($category['can_collapse'])
 			echo '
-			<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
+				<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
 
 		echo '
-			', $category['link'], '
-		</h3>
-		<ul id="b_cat_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+				', $category['link'], '
+			</h3>
+			<ul id="b_cat_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
 		foreach ($category['boards'] as $board)
 		{
 			echo '
-			<li>
-				', function_exists('b_bi_' . $board['type'] . '_info') ? call_user_func('b_bi_' . $board['type'] . '_info', $board) : b_bi_board_info($board), '
-				', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board);
+				<li>
+					', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
+					', function_exists('b_bi_' . $board['type'] . '_info') ? call_user_func('b_bi_' . $board['type'] . '_info', $board) : b_bi_board_info($board);
 
 			// Won't somebody think of the children!
 			if (function_exists('template_bi_' . $board['type'] . '_children'))
@@ -164,10 +165,11 @@ function template_tab_boardlist()
 				template_bi_board_children($board);
 
 			echo '
-			</li>';
+				</li>';
 		}
 		echo '
-		</ul>';
+			</ul>
+		</div>';
 	}
 	echo '
 	</div>';
@@ -416,9 +418,9 @@ function template_bi_board_children($board)
 		}
 
 		echo '
-			<div id="board_', $board['id'], '_children" class="children">
-				<p><strong id="child_list_', $board['id'], '">', $txt['sub_boards'], '</strong>', implode(' ', $children), '</p>
-			</div>';
+			<ul id="board_', $board['id'], '_children" class="b_children">
+				<li>', implode('</li><li>', $children), '</li>
+			</ul>';
 	}
 }
 
