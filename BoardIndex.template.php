@@ -155,8 +155,7 @@ function template_tab_boardlist()
 		{
 			echo '
 				<li>
-					', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
-					', function_exists('b_bi_' . $board['type'] . '_info') ? call_user_func('b_bi_' . $board['type'] . '_info', $board) : b_bi_board_info($board);
+				', function_exists('b_bi_' . $board['type'] . '_info') ? call_user_func('b_bi_' . $board['type'] . '_info', $board) : b_bi_board_info($board);
 
 			// Won't somebody think of the children!
 			if (function_exists('template_bi_' . $board['type'] . '_children'))
@@ -325,23 +324,51 @@ function b_bi_board_info($board)
 {
 	global $context, $scripturl, $txt;
 	echo '
-		<a href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>';
+	<div class="b_binfo">
+		<div class="b_binfo_text">	
+			<a href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>';
 
 	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
 		echo '
-		<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link amt">!</a>';
+			<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="b_bi_icons b_moderate"></a>';
+
+	// Show some basic information about the number of posts, etc.
+	echo '
+
+			', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
+			', function_exists('b_bi_' . $board['type'] . '_stats') ? call_user_func('b_bi_' . $board['type'] . '_stats', $board) : b_bi_board_stats($board),'
+			', function_exists('b_bi_' . $board['type'] . '_lastpost') ? call_user_func('b_bi_' . $board['type'] . '_lastpost', $board) : b_bi_board_lastpost($board),'
+		</div>
+		<p class="b_description">', $board['description'], '</p>
+	</div>';
+
 }
 function b_bi_board_icon($board)
 {
 	global $context, $scripturl;
 	echo '
-		<a href="', ($context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
+		<a href="', ($context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="b_bi_icons b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
 }
 function b_bi_redirect_icon($board)
 {
 	global $context, $scripturl;
 	echo '
-		<a href="', $board['href'], '" class="b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
+		<a href="', $board['href'], '" class="b_bi_icons b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
+}
+function b_bi_board_stats($board)
+{
+	echo $board['posts'], ' | ', $board['topics'];
+}
+
+function b_bi_redirect_stats($board)
+{
+	echo $board['posts'];
+}
+function b_bi_board_lastpost($board)
+{
+	if (!empty($board['last_post']['id']))
+		echo '
+		<a href="' , $board['last_post']['href'] , '" class="b_bi_icons b_lastpost_link"></a>';
 }
 
 /**

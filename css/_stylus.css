@@ -350,18 +350,21 @@
         margin: 0;
         grid-gap: 0.5rem 0;
     }
-    a.b_board_off, a.b_board_on, a.b_board_on2, a.b_board_redirect {
+    .b_bi_icons {
         display: block;
-        width: 0.4rem;
-        border-radius: 50%;
-        height: 0.4rem;
-        float: left;
-        margin: 0.35rem 0.6rem 0.4rem 0.4rem;
-        background: gainsboro;
+        width: 1rem;
+        position: relative;
+        height: 1rem;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        margin: 1px 4px 0 4px;
     }
-    a.b_board_on { background: orangered; } 
-    a.b_board_on2 { background: orange; } 
-    a.b_board_redirect { background: steelblue; }
+    .b_binfo_text {
+        display: flex;
+    }
+    .b_binfo_text a { flex: 0 0 auto; }
+    .b_binfo_text a:nth-of-type(2) { flex: 1 0 auto; margin-left: 0.3rem; }
     ul.b_children {
         padding: 0.2rem 0 0.2rem 1.45rem;
         font-size: 0.8rem;

@@ -1,6 +1,15 @@
 /* icons */
 .b_icon_new { background-image: url(../images/svg/mail-light.svg); }
 
+.b_moderate { background-image: url(../images/svg/flag.svg); }
+
+.b_board_off { background-image: url(../images/svg/message-square-on.svg); }
+.b_board_on { background-image: url(../images/svg/message-square-on.svg); }
+.b_board_on2 { background-image: url(../images/svg/message-square-on2.svg); }
+
+.b_board_redirect { background-image: url(../images/svg/external-link.svg); }
+.b_lastpost_link { background-image: url(../images/svg/arrow-right-circle.svg); }
+
 /* footer */
 #b_footer_site { 
     background-image: url(../images/smflogo.svg); 

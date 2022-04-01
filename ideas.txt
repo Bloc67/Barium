@@ -6,7 +6,7 @@ boardindex
         categories (23)
         boardlist (123)
         board detail (3)
-    tab2
+    tab2 
         infocenter (123)
         selected infocenter item (23)
         2nd selected infocenter item (3)
