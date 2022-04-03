@@ -251,7 +251,7 @@
     
     /* boardindex or any other tab section */
     .b_section_tabs {
-        background: #ddd;
+        background: #eee;
     }
     .b_section_tabs ul {
         display: flex;
@@ -260,7 +260,7 @@
     } 
     .b_section_tabs > ul > li > a {
         display: block;
-        padding: 0.3rem 0.7rem 0.4rem 0.7rem;
+        padding: 0.3rem 0.7rem 0.4rem 0;
         border-radius: 3px 3px 0 0;
         font-size: 0.9rem;
         opacity: 0.7;
@@ -271,7 +271,7 @@
         color: orangered;
     } 
     .b_section_tabs ul li a.active {
-        background: white;
+        font-weight: bold;;
         opacity: 1;
     } 
     .b_section_tabs main {
@@ -279,7 +279,7 @@
     } 
     .b_section_tabs main > div {
         background: white;
-        padding: 0.7rem 1rem 0.7rem 1.7rem;
+        padding: 0.7rem 1rem 0.7rem 1rem;
         grid-template-columns: 1fr 2fr 1fr;
         grid-gap: 1rem;
         display: none;
@@ -287,6 +287,10 @@
     .b_section_tabs main > div > * {
         border-right: solid 1px #ddd;
         padding-right: 1rem;
+    } 
+    .b_section_tabs main > div div:last-of-type  {
+        border-right: none;
+        padding-right: 0;
     } 
     .b_description {
         padding: 0.2rem 0 1rem 0;
@@ -297,7 +301,14 @@
     .b_section_tabs main > div.visible {
         display: grid;
     } 
-    
+    .b_lastpost .b_listing {
+        display: grid; 
+        font-size: 0.8rem;
+        grid-gap: 0.2rem;
+        padding-bottom: 0.5rem;
+    }
+    .b_lastpost .b_listing li:first-of-type { font-size: 1rem;}
+    .b_lastpost .b_listing {display: grid;}
     
     /* linktree*/
     #b_nav_linktree {
@@ -358,18 +369,26 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-position: 0 0;
-        margin: 1px 4px 0 4px;
+        margin: 0px 0.5rem 2px 0.5rem;
     }
     .b_binfo_text {
         display: flex;
+        font-size: 0.8rem;
     }
-    .b_binfo_text a { flex: 0 0 auto; }
-    .b_binfo_text a:nth-of-type(2) { flex: 1 0 auto; margin-left: 0.3rem; }
+    .b_binfo .b_description { padding-top: 0.5rem; padding-bottom: 0; }
+    
+    .b_binfo_text a { flex: 0 0 auto; font-size: 1rem; }
+    .b_binfo_text a:nth-of-type(1) { flex: 1 0 auto; margin-right: 0.3rem; }
     ul.b_children {
-        padding: 0.2rem 0 0.2rem 1.45rem;
+        margin: 0;
+        padding: 0.2rem 0 0.7rem 0;
         font-size: 0.8rem;
         opacity: 0.7;
     }
+    ul.b_children:before { content: "["; }
+    ul.b_children:after { content: "]"; }
+    
+    
     }
     
     @-moz-document url-prefix("http://localhost/web/smf21/") {

@@ -178,89 +178,24 @@ function template_tab_bdetail()
 {
 	global $context, $txt, $scripturl;
 
-	echo 'Boardindex';
-	return;
-
 	echo '
-	<div id="boardindex_table" class="boardindex_table">';
-
-	/* Each category in categories is made up of:
-	id, href, link, name, is_collapsed (is it collapsed?), can_collapse (is it okay if it is?),
-	new (is it new?), collapse_href (href to collapse/expand), collapse_image (up/down image),
-	and boards. (see below.) */
+	<div id="b_details">';
 	foreach ($context['categories'] as $category)
 	{
 		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
 		if (empty($category['boards']) && !$category['is_collapsed'])
 			continue;
 
-		echo '
-		<div class="main_container">
-			<div class="cat_bar ', $category['is_collapsed'] ? 'collapsed' : '', '" id="category_', $category['id'], '">
-				<h3 class="catbg">';
-
-		// If this category even can collapse, show a link to collapse it.
-		if ($category['can_collapse'])
-			echo '
-					<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
-
-		echo '
-					', $category['link'], '
-				</h3>', !empty($category['description']) ? '
-				<div class="desc">' . $category['description'] . '</div>' : '', '
-			</div>
-			<div id="category_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
-
-		/* Each board in each category's boards has:
-		new (is it new?), id, name, description, moderators (see below), link_moderators (just a list.),
-		children (see below.), link_children (easier to use.), children_new (are they new?),
-		topics (# of), posts (# of), link, href, and last_post. (see below.) */
 		foreach ($category['boards'] as $board)
 		{
-			echo '
-				<div id="board_', $board['id'], '" class="up_contain ', (!empty($board['css_class']) ? $board['css_class'] : ''), '">
-					<div class="board_icon">
-						', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
-					</div>
-					<div class="info">
-						', function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board), '
-					</div><!-- .info -->';
-
-			// Show some basic information about the number of posts, etc.
-			echo '
-					<div class="board_stats">
-						', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board), '
-					</div>';
-
 			// Show the last post if there is one.
 			echo'
-					<div class="lastpost">
-						', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board), '
-					</div>';
-
-			// Won't somebody think of the children!
-			if (function_exists('template_bi_' . $board['type'] . '_children'))
-				call_user_func('template_bi_' . $board['type'] . '_children', $board);
-			else
-				template_bi_board_children($board);
-
-			echo '
-				</div><!-- #board_[id] -->';
+		<div class="b_lastpost">
+			', function_exists('bindex_bi_' . $board['type'] . '_lastpost') ? call_user_func('bindex_bi_' . $board['type'] . '_lastpost', $board) : bindex_bi_board_lastpost($board), '
+		</div>';
 		}
-
-		echo '
-			</div><!-- #category_[id]_boards -->
-		</div><!-- .main_container -->';
 	}
-
 	echo '
-	</div><!-- #boardindex_table -->';
-
-	// Show the mark all as read button?
-	if ($context['user']['is_logged'] && !empty($context['categories']))
-		echo '
-	<div class="mark_read">
-		', template_button_strip($context['mark_read_button'], 'right'), '
 	</div>';
 }
 
@@ -412,6 +347,17 @@ function template_bi_board_lastpost($board)
 	if (!empty($board['last_post']['id']))
 		echo '
 			<p>', $board['last_post']['last_post_message'], '</p>';
+}
+
+function bindex_bi_board_lastpost($board)
+{
+	if (!empty($board['last_post']['id']))
+		echo '
+	<ul class="b_listing"> 
+		<li>', $board['last_post']['link'] , '</li>
+		<li>', $board['last_post']['time'] , '</li>
+		<li>', $board['last_post']['member']['link'] , '</li>
+	</ul>';
 }
 
 /**
