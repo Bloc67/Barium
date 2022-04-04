@@ -260,7 +260,7 @@ function b_bi_board_info($board)
 	global $context, $scripturl, $txt;
 	echo '
 	<div class="b_binfo">
-		<div class="b_binfo_text">	
+		<div class="b_binfo_text b_', $board['board_class'], '">	
 			<a href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>';
 
 	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))

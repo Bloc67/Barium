@@ -3,7 +3,7 @@
 
 .b_moderate { background-image: url(../images/svg/flag.svg); }
 
-.b_board_off { background-image: url(../images/svg/mail-on.svg); }
+.b_board_off { background-image: url(../images/svg/mail.svg);opacity: 0.7;  }
 .b_board_on { background-image: url(../images/svg/mail-on.svg); }
 .b_board_on2 { background-image: url(../images/svg/mail-on2.svg); }
 
