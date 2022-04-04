@@ -269,10 +269,9 @@ function b_bi_board_info($board)
 
 	// Show some basic information about the number of posts, etc.
 	echo '
-
-			', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
 			', function_exists('b_bi_' . $board['type'] . '_stats') ? call_user_func('b_bi_' . $board['type'] . '_stats', $board) : b_bi_board_stats($board),'
 			', function_exists('b_bi_' . $board['type'] . '_lastpost') ? call_user_func('b_bi_' . $board['type'] . '_lastpost', $board) : b_bi_board_lastpost($board),'
+			', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
 		</div>
 		<p class="b_description">', $board['description'], '</p>
 	</div>';
