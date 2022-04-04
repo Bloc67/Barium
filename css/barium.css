@@ -3,12 +3,12 @@
 
 .b_moderate { background-image: url(../images/svg/flag.svg); }
 
-.b_board_off { background-image: url(../images/svg/mail.svg);opacity: 0.7;  }
-.b_board_on { background-image: url(../images/svg/mail-on.svg); }
-.b_board_on2 { background-image: url(../images/svg/mail-on2.svg); }
+.b_bi_icons.b_board_off { background-image: url(../images/svg/mail.svg);  }
+.b_bi_icons.b_board_on { background-image: url(../images/svg/mail-on.svg); opacity: 1;}
+.b_bi_icons.b_board_on2 { background-image: url(../images/svg/mail-on2.svg); opacity: 1;}
 
-.b_board_redirect { background-image: url(../images/svg/external-link.svg); }
-.b_lastpost_link { background-image: url(../images/svg/arrow-right-circle.svg); }
+.b_bi_icons.b_board_redirect { background-image: url(../images/svg/external-link.svg);opacity: 0.7; }
+.b_bi_icons.b_lastpost_link { background-image: url(../images/svg/arrow-right-circle.svg); }
 
 /* footer */
 #b_footer_site { 

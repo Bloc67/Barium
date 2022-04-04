@@ -272,6 +272,7 @@ function b_bi_board_info($board)
 			', function_exists('b_bi_' . $board['type'] . '_stats') ? call_user_func('b_bi_' . $board['type'] . '_stats', $board) : b_bi_board_stats($board),'
 			', function_exists('b_bi_' . $board['type'] . '_lastpost') ? call_user_func('b_bi_' . $board['type'] . '_lastpost', $board) : b_bi_board_lastpost($board),'
 			', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
+			<a href="' , $board['last_post']['member']['href'] , '" class="b_avatar_board floatright" title="' , $board['last_post']['member']['name'] , '" style="background-image: url(' , $board['last_post']['member']['avatar']['href'] , ');"></a>
 		</div>
 		<p class="b_description">', $board['description'], '</p>
 	</div>';
