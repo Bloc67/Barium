@@ -13,7 +13,7 @@
 /**
  * The top part of the outer layer of the boardindex
  */
-function template_boardindex_outer_above()
+function template_boardindex_outer_above() 
 {
 	global $txt;
 
@@ -76,9 +76,6 @@ function template_newsfader()
  */
 function template_main()
 {
-	global $context, $txt, $scripturl;
-
-	// just return, all work is done in the outer board template(..).
 	return;
 }
 
@@ -144,7 +141,7 @@ function template_tab_boardlist()
 		// If this category even can collapse, show a link to collapse it.
 		if ($category['can_collapse'])
 			echo '
-				<span id="category_', $category['id'], '_upshrink" class="', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', ' floatright" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '" style="display: none;"></span>';
+				<span id="category_', $category['id'], '_upshrink" class="b_bi_icons b_', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', '" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '"></span>';
 
 		echo '
 				', $category['link'], '
@@ -155,7 +152,7 @@ function template_tab_boardlist()
 		{
 			echo '
 				<li>
-				', function_exists('b_bi_' . $board['type'] . '_info') ? call_user_func('b_bi_' . $board['type'] . '_info', $board) : b_bi_board_info($board);
+				', function_exists('template_bi_' . $board['type'] . '_info') ? call_user_func('template_bi_' . $board['type'] . '_info', $board) : template_bi_board_info($board);
 
 			// Won't somebody think of the children!
 			if (function_exists('template_bi_' . $board['type'] . '_children'))
@@ -199,63 +196,21 @@ function template_tab_bdetail()
 	</div>';
 }
 
-
-/**
- * Outputs the board icon for a standard board.
- *
- * @param array $board Current board information.
- */
 function template_bi_board_icon($board)
 {
 	global $context, $scripturl;
-
 	echo '
-		<a href="', ($context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
+		<a href="', ($context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="b_bi_icons b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
 }
 
-/**
- * Outputs the board icon for a redirect.
- *
- * @param array $board Current board information.
- */
 function template_bi_redirect_icon($board)
 {
 	global $context, $scripturl;
-
 	echo '
-		<a href="', $board['href'], '" class="board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
+		<a href="', $board['href'], '" class="b_bi_icons b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
 }
 
-/**
- * Outputs the board info for a standard board or redirect.
- *
- * @param array $board Current board information.
- */
 function template_bi_board_info($board)
-{
-	global $context, $scripturl, $txt;
-
-	echo '
-		<a class="subject mobile_subject" href="', $board['href'], '" id="b', $board['id'], '">
-			', $board['name'], '
-		</a>';
-
-	// Has it outstanding posts for approval?
-	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
-		echo '
-		<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="moderation_link amt">!</a>';
-
-	echo '
-		<div class="board_description">', $board['description'], '</div>';
-
-	// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
-	if (!empty($board['link_moderators']))
-		echo '
-		<p class="moderators">', count($board['link_moderators']) == 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
-}
-
-
-function b_bi_board_info($board)
 {
 	global $context, $scripturl, $txt;
 	echo '
@@ -269,90 +224,33 @@ function b_bi_board_info($board)
 
 	// Show some basic information about the number of posts, etc.
 	echo '
-			', function_exists('b_bi_' . $board['type'] . '_stats') ? call_user_func('b_bi_' . $board['type'] . '_stats', $board) : b_bi_board_stats($board),'
-			', function_exists('b_bi_' . $board['type'] . '_lastpost') ? call_user_func('b_bi_' . $board['type'] . '_lastpost', $board) : b_bi_board_lastpost($board),'
-			', function_exists('b_bi_' . $board['type'] . '_icon') ? call_user_func('b_bi_' . $board['type'] . '_icon', $board) : b_bi_board_icon($board), '
-			<a href="' , $board['last_post']['member']['href'] , '" class="b_avatar_board floatright" title="' , $board['last_post']['member']['name'] , '" style="background-image: url(' , $board['last_post']['member']['avatar']['href'] , ');"></a>
+			', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board),'
+			', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board),'
+			', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
 		</div>
 		<p class="b_description">', $board['description'], '</p>
 	</div>';
 
 }
-function b_bi_board_icon($board)
-{
-	global $context, $scripturl;
-	echo '
-		<a href="', ($context['user']['is_guest'] ? $board['href'] : $scripturl . '?action=unread;board=' . $board['id'] . '.0;children'), '" class="b_bi_icons b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
-}
-function b_bi_redirect_icon($board)
-{
-	global $context, $scripturl;
-	echo '
-		<a href="', $board['href'], '" class="b_bi_icons b_board_', $board['board_class'], '"', !empty($board['board_tooltip']) ? ' title="' . $board['board_tooltip'] . '"' : '', '></a>';
-}
-function b_bi_board_stats($board)
-{
+
+function template_bi_board_stats($board) {
 	echo $board['posts'], ' | ', $board['topics'];
 }
 
-function b_bi_redirect_stats($board)
-{
+function template_bi_redirect_stats($board) {
 	echo $board['posts'];
 }
-function b_bi_board_lastpost($board)
-{
+
+function template_bi_board_lastpost($board) {
 	if (!empty($board['last_post']['id']))
 		echo '
 		<a href="' , $board['last_post']['href'] , '" class="b_bi_icons b_lastpost_link"></a>';
 }
 
-/**
- * Outputs the board stats for a standard board.
- *
- * @param array $board Current board information.
- */
-function template_bi_board_stats($board)
-{
-	global $txt;
-
-	echo '
-		<p>
-			', $txt['posts'], ': ', comma_format($board['posts']), '<br>', $txt['board_topics'], ': ', comma_format($board['topics']), '
-		</p>';
-}
-
-/**
- * Outputs the board stats for a redirect.
- *
- * @param array $board Current board information.
- */
-function template_bi_redirect_stats($board)
-{
-	global $txt;
-
-	echo '
-		<p>
-			', $txt['redirects'], ': ', comma_format($board['posts']), '
-		</p>';
-}
-
-/**
- * Outputs the board lastposts for a standard board or a redirect.
- * When on a mobile device, this may be hidden if no last post exists.
- *
- * @param array $board Current board information.
- */
-function template_bi_board_lastpost($board)
-{
+function bindex_bi_board_lastpost($board) {
 	if (!empty($board['last_post']['id']))
 		echo '
-			<p>', $board['last_post']['last_post_message'], '</p>';
-}
-
-function bindex_bi_board_lastpost($board)
-{
-	if (!empty($board['last_post']['id']))
-		echo '
+	<a href="' , $board['last_post']['member']['href'] , '" class="b_avatar_board floatleft" title="' , $board['last_post']['member']['name'] , '" style="background-image: url(' , $board['last_post']['member']['avatar']['href'] , ');"></a>
 	<ul class="b_listing"> 
 		<li>', $board['last_post']['link'] , '</li>
 		<li>', $board['last_post']['time'] , '</li>
@@ -372,22 +270,14 @@ function template_bi_board_children($board)
 	// Show the "Child Boards: ". (there's a link_children but we're going to bold the new ones...)
 	if (!empty($board['children']))
 	{
-		// Sort the links into an array with new boards bold so it can be imploded.
 		$children = array();
-		/* Each child in each board's children has:
-			id, name, description, new (is it new?), topics (#), posts (#), href, link, and last_post. */
 		foreach ($board['children'] as $child)
 		{
-			if (!$child['is_redirect'])
-				$child['link'] = '' . ($child['new'] ? '<a href="' . $scripturl . '?action=unread;board=' . $child['id'] . '" title="' . $txt['new_posts'] . ' (' . $txt['board_topics'] . ': ' . comma_format($child['topics']) . ', ' . $txt['posts'] . ': ' . comma_format($child['posts']) . ')" class="new_posts">' . $txt['new'] . '</a> ' : '') . '<a href="' . $child['href'] . '" ' . ($child['new'] ? 'class="board_new_posts" ' : '') . 'title="' . ($child['new'] ? $txt['new_posts'] : $txt['old_posts']) . ' (' . $txt['board_topics'] . ': ' . comma_format($child['topics']) . ', ' . $txt['posts'] . ': ' . comma_format($child['posts']) . ')">' . $child['name'] . '</a>';
-			else
-				$child['link'] = '<a href="' . $child['href'] . '" title="' . comma_format($child['posts']) . ' ' . $txt['redirects'] . ' - ' . $child['short_description'] . '">' . $child['name'] . '</a>';
-
 			// Has it posts awaiting approval?
 			if ($child['can_approve_posts'] && ($child['unapproved_posts'] || $child['unapproved_topics']))
 				$child['link'] .= ' <a href="' . $scripturl . '?action=moderate;area=postmod;sa=' . ($child['unapproved_topics'] > 0 ? 'topics' : 'posts') . ';brd=' . $child['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . sprintf($txt['unapproved_posts'], $child['unapproved_topics'], $child['unapproved_posts']) . '" class="b_moderate"></a>';
 
-			$children[] = '<span>' . $child['new'] ? $child['link'] . '</span>' : '<span>' . $child['link'] . '</span>';
+			$children[] = '<span>' . (!empty($child['new']) ? '<a class="b_bi_icons b_board_on2" href="'.$child['last_post']['href'] . '"></a>' : '') . '<a href="' . $child['href'] . '">' . $child['name'] .' </a></span>';
 		}
 		echo '
 			<ul id="board_', $board['id'], '_children" class="b_children">

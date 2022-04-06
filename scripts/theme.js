@@ -15,7 +15,6 @@ $(function() {
 		$(what).addClass('visible');
 		$(this).addClass('active');
 	});
-
 });
 
 // The purpose of this code is to fix the height of overflow: auto blocks, because some browsers can't figure it out for themselves.

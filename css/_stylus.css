@@ -291,7 +291,7 @@
         opacity: 1;
     }
     .b_section_tabs main {
-        padding: 0 0 1rem 0;
+        padding: 0;
     }
     .b_section_tabs main > div {
         background: white;
@@ -321,14 +321,26 @@
         display: grid;
         font-size: 0.8rem;
         grid-gap: 0.2rem;
-        padding-bottom: 0.5rem;
+        padding: 0.2rem 0 0.5rem 0.7rem;
+    }
+    .b_lastpost .b_listing li {
+        opacity: 0.5;
     }
     .b_lastpost .b_listing li:first-of-type {
-        font-size: 1rem;
+        font-size: 0.85rem;
+        opacity: 1;
     }
     .b_lastpost .b_listing {
         display: grid;
     }
+    .b_cat {
+        display: grid;
+        grid-template-areas: "blink btoggle";
+        grid-template-columns: auto 1fr;
+        grid-gap: 0 0.5rem;
+    }
+    .b_cat > span { grid-area: btoggle; cursor: pointer; }
+    .b_cat > a { grid-area: blink; }
     
     /* linktree*/
     #b_nav_linktree {
@@ -402,6 +414,11 @@
         display: flex;
         font-size: 0.8rem;
     }
+    .b_binfo {
+        padding: 0 0 0.2rem 0;
+        border-bottom: solid 1px #ddd;
+    }
+    
     .b_binfo_text.b_on:before,
     .b_binfo_text.b_on2:before {
         content: " ";
@@ -433,6 +450,13 @@
         padding: 0.2rem 0 0.7rem 0;
         font-size: 0.8rem;
         opacity: 0.7;
+        display: flex;
+    }
+    ul.b_children li {
+        padding-right: 0.5rem;
+    }
+    ul.b_children li:last-of-type {
+        padding-right: 0.15rem;
     }
     ul.b_children:before {
         content: "[";
@@ -440,15 +464,19 @@
     ul.b_children:after {
         content: "]";
     }
+    ul.b_children li a.b_bi_icons {
+        display: block;
+        float: left;
+    }
     .b_avatar_board {
-        width: 2rem;
-        height: 2rem;
+        width: 1.2rem;
+        height: 1.2rem;
         background-size: cover;
         border-radius: 4px;
     }
-    .b_binfo_text .b_avatar_board {
+    #b_details .b_avatar_board {
         position: relative;
-        margin: -2px 0 0 10px;
+        margin: 6px 0 0 0px;
     }
     }
     
