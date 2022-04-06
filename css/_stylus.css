@@ -20,9 +20,7 @@
         font-size: 1.3rem;
     }
     
-    header#b_header_site a {
-        color: white;
-    }
+    header#b_header_site a { color: white;}
     #b_slogan {
         display: grid;
         grid-template-columns: auto 1fr;
@@ -30,13 +28,11 @@
         padding: 1rem;
         grid-gap: 1rem;
     }
-    nav#b_nav_site ul,
-    #top_info {
+    nav#b_nav_site ul,#top_info {
         display: flex;
         padding: 0;
     }
-    nav#b_nav_site ul li a,
-    #top_info li a {
+    nav#b_nav_site ul li a,#top_info li a {
         display: block;
         padding: 0.4rem 0.2rem;
         position: relative;
@@ -102,12 +98,8 @@
         right: 0.5rem;
         background: orangered;
     }
-    nav#b_nav_site ul li:hover ul {
-        display: block;
-    }
-    nav#b_nav_site ul li:hover > a {
-        color: white;
-    }
+    nav#b_nav_site ul li:hover ul { display: block;}
+    nav#b_nav_site ul li:hover > a {color: white;}
     nav#b_nav_site ul li ul li a:hover,
     #top_info .top_menu a:hover {
         background: #274d6c;
@@ -119,15 +111,9 @@
         display: grid;
         grid-template-columns: auto 1fr;
     }
-    #top_info {
-        display: flex;
-    }
-    #top_info .top_menu {
-        display: none;
-    }
-    #top_info .top_menu.visible {
-        display: block;
-    }
+    #top_info { display: flex;}
+    #top_info .top_menu { display: none;}
+    #top_info .top_menu.visible { display: block;}
     
     .b_pm_unread {
         max-height: 10rem;
@@ -175,16 +161,12 @@
         margin: 0;
     }
     #pm_menu_top.open,
-    #profile_menu_top.open {
-        color: navajowhite;
-    }
+    #profile_menu_top.open { color: navajowhite;}
     #pm_menu .b_pm_unread * {
         font-size: 0.9rem !important;
         color: white;
     }
-    #pm_menu .b_pm_unread a {
-        color: navajowhite;
-    }
+    #pm_menu .b_pm_unread a {    color: navajowhite;}
     
     /* quick search */
     #search_form {
@@ -219,12 +201,10 @@
         background: steelblue;
         border: none;
     }
-    #b_user_site form#search_form {
-        text-align: right;
-    }
+    #b_user_site form#search_form { text-align: right;}
     
     /* avatars */
-    #top_info .top_menu img.avatar {
+    #top_info .top_menu img.avatar { 
         max-height: 30px !important;
     }
     
@@ -236,9 +216,7 @@
     }
     
     /* article */
-    article#b_article {
-        grid-area: article;
-    }
+    article#b_article { grid-area: article;}
     
     /* footer site */
     footer#b_footer_site {
@@ -265,9 +243,7 @@
     }
     
     /* boardindex or any other tab section */
-    .b_section_tabs {
-        background: #eee;
-    }
+    .b_section_tabs { background: #eee;}
     .b_section_tabs ul {
         display: flex;
         padding: 0.2rem 1rem 0 1rem;
@@ -287,12 +263,9 @@
     }
     .b_section_tabs ul li a.active {
         font-weight: bold;
-        ;
         opacity: 1;
     }
-    .b_section_tabs main {
-        padding: 0;
-    }
+    .b_section_tabs main {padding: 0;}
     .b_section_tabs main > div {
         background: white;
         padding: 0.7rem 1rem 0.7rem 1rem;
@@ -314,25 +287,19 @@
         line-height: 1.1rem;
         color: #777;
     }
-    .b_section_tabs main > div.visible {
-        display: grid;
-    }
+    .b_section_tabs main > div.visible { display: grid;}
     .b_lastpost .b_listing {
         display: grid;
         font-size: 0.8rem;
         grid-gap: 0.2rem;
         padding: 0.2rem 0 0.5rem 0.7rem;
     }
-    .b_lastpost .b_listing li {
-        opacity: 0.5;
-    }
+    .b_lastpost .b_listing li { opacity: 0.5;}
     .b_lastpost .b_listing li:first-of-type {
         font-size: 0.85rem;
         opacity: 1;
     }
-    .b_lastpost .b_listing {
-        display: grid;
-    }
+    .b_lastpost .b_listing { display: grid;}
     .b_cat {
         display: grid;
         grid-template-areas: "blink btoggle";
@@ -356,23 +323,17 @@
         opacity: 0.5;
         margin: 0;
     }
-    #b_nav_linktree:hover ul {
-        opacity: 1;
-    }
+    #b_nav_linktree:hover ul {  opacity: 1;}
     #b_nav_linktree ul li a:after {
         content: " /";
         margin-right: 0.2rem;
     }
-    #b_nav_linktree ul li:last-of-type a {
-        font-weight: bold;
-    }
+    #b_nav_linktree ul li:last-of-type a {font-weight: bold;}
     #b_nav_linktree ul li:last-of-type a:after {
         content: "";
         margin-right: 0;
     }
-    #b_nav_linktree ul li a {
-        display: block;
-    }
+    #b_nav_linktree ul li a { display: block;}
     #b_nav_linktree ul li a:hover {
         color: #000;
         text-decoration: none;
@@ -386,9 +347,7 @@
         text-transform: uppercase;
         color: #888;
     }
-    .b_boardindex h3 a {
-        color: #888;
-    }
+    .b_boardindex h3 a { color: #888;}
     .b_boardindex h3 a:hover {
         color: #000;
         text-decoration: none;
@@ -429,14 +388,11 @@
         height: 1rem;
         margin: 2px 0 0 -1rem;
     }
-    .b_binfo_text.b_on2:before {
-        background: orange;
-    }
+    .b_binfo_text.b_on2:before { background: orange;}
     .b_binfo .b_description {
         padding-top: 0.5rem;
         padding-bottom: 0;
     }
-    
     .b_binfo_text a {
         flex: 0 0 auto;
         font-size: 1rem;
@@ -452,18 +408,10 @@
         opacity: 0.7;
         display: flex;
     }
-    ul.b_children li {
-        padding-right: 0.5rem;
-    }
-    ul.b_children li:last-of-type {
-        padding-right: 0.15rem;
-    }
-    ul.b_children:before {
-        content: "[";
-    }
-    ul.b_children:after {
-        content: "]";
-    }
+    ul.b_children li { padding-right: 0.5rem;}
+    ul.b_children li:last-of-type { padding-right: 0.15rem;}
+    ul.b_children:before { content: "[";}
+    ul.b_children:after {content: "]";}
     ul.b_children li a.b_bi_icons {
         display: block;
         float: left;
@@ -495,8 +443,9 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto 1fr auto auto;
     }
-    body.action_admin article#b_article {
-        padding: 1rem;
+    body.action_admin main#b_main_site {
+        padding: 0.2rem 1rem;
+        font-size: 80%;
     }
     /* end admin areas */
     }
