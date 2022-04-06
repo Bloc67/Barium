@@ -15,7 +15,10 @@ $(function() {
 		$(what).addClass('visible');
 		$(this).addClass('active');
 	});
+
+
 });
+
 
 // The purpose of this code is to fix the height of overflow: auto blocks, because some browsers can't figure it out for themselves.
 function smf_codeBoxFix()
@@ -40,7 +43,7 @@ function smf_codeBoxFix()
 	});
 }
 
-// Add a fix for code stuff?
+// Add a fix for code stuff? 
 if (is_ie || is_webkit || is_ff)
 	addLoadEvent(smf_codeBoxFix);
 
@@ -67,3 +70,6 @@ function smf_addButton(stripId, image, options)
 		'</a>'
 	);
 }
+
+
+

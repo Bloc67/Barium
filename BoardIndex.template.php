@@ -134,19 +134,19 @@ function template_tab_boardlist()
 		if (empty($category['boards']) && !$category['is_collapsed'])
 			continue;
 
-		echo '
-		<div id="b_cat_', $category['id'], '">
+		echo ' 
+		<div id="b_cat_', $category['id'], '"> 
 			<h3 class="b_cat ', $category['is_collapsed'] ? 'collapsed' : '', '">';
 
 		// If this category even can collapse, show a link to collapse it.
 		if ($category['can_collapse'])
 			echo '
-				<span id="category_', $category['id'], '_upshrink" class="b_bi_icons b_', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', '" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '"></span>';
+				<span id="b_upshrink_', $category['id'], '" class="b_bi_icons b_upshrink b_', $category['is_collapsed'] ? 'toggle_down' : 'toggle_up', '" data-collapsed="', (int) $category['is_collapsed'], '" title="', !$category['is_collapsed'] ? $txt['hide_category'] : $txt['show_category'], '"></span>';
 
 		echo '
 				', $category['link'], '
 			</h3>
-			<ul id="b_cat_', $category['id'], '_boards" ', (!empty($category['css_class']) ? ('class="' . $category['css_class'] . '"') : ''), $category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+			<ul id="b_cat_', $category['id'], '_boards" class="b_bi_board ', (!empty($category['css_class']) ? $category['css_class'] : ''), '"' ,$category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
 		foreach ($category['boards'] as $board)
 		{
