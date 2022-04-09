@@ -134,7 +134,7 @@ function template_tab_boardlist()
 		if (empty($category['boards']) && !$category['is_collapsed'])
 			continue;
 
-		echo ' 
+		echo '
 		<div id="b_cat_', $category['id'], '"> 
 			<h3 class="b_cat ', $category['is_collapsed'] ? 'collapsed' : '', '">';
 
@@ -146,7 +146,7 @@ function template_tab_boardlist()
 		echo '
 				', $category['link'], '
 			</h3>
-			<ul id="b_cat_', $category['id'], '_boards" class="b_bi_board ', (!empty($category['css_class']) ? $category['css_class'] : ''), '"' ,$category['is_collapsed'] ? ' style="display: none;"' : '', '>';
+			<ul id="b_cat_', $category['id'], '_boards" class="b_bi_board', (!empty($category['css_class']) ? ' '.$category['css_class'] : ''), '"' ,$category['is_collapsed'] ? ' style="display: none;"' : '', '>';
 
 		foreach ($category['boards'] as $board)
 		{
@@ -185,11 +185,28 @@ function template_tab_bdetail()
 
 		foreach ($category['boards'] as $board)
 		{
-			// Show the last post if there is one.
+			echo '
+		<section id="b_bdetail_' , $board['id'] , '">';
+			// Has it outstanding posts for approval?
+//		if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
+			echo '
+			<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="b_bi_icons b_moderate floatright"></a>';
+
+		echo '
+			<h2>' , $board['name'] , '</h2>
+			<div class="board_description">', $board['description'], '</div>';
+
+		// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
+//		if (!empty($board['link_moderators']))
+			echo '
+			<p class="moderators">', count($board['link_moderators']) == 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
+
+		// Show the last post if there is one.
 			echo'
-		<div class="b_lastpost">
-			', function_exists('bindex_bi_' . $board['type'] . '_lastpost') ? call_user_func('bindex_bi_' . $board['type'] . '_lastpost', $board) : bindex_bi_board_lastpost($board), '
-		</div>';
+			<div class="b_lastpost">
+				', function_exists('bindex_bi_' . $board['type'] . '_lastpost') ? call_user_func('bindex_bi_' . $board['type'] . '_lastpost', $board) : bindex_bi_board_lastpost($board), '
+			</div>
+		</section>';
 		}
 	}
 	echo '
@@ -215,7 +232,7 @@ function template_bi_board_info($board)
 	global $context, $scripturl, $txt;
 	echo '
 	<div class="b_binfo">
-		<div class="b_binfo_text b_', $board['board_class'], '">	
+		<div data-item="b_bdetail_' , $board['id'] , '" class="b_binfo_text b_', $board['board_class'], '">	
 			<a href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>';
 
 	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
@@ -250,12 +267,8 @@ function template_bi_board_lastpost($board) {
 function bindex_bi_board_lastpost($board) {
 	if (!empty($board['last_post']['id']))
 		echo '
-	<a href="' , $board['last_post']['member']['href'] , '" class="b_avatar_board floatleft" title="' , $board['last_post']['member']['name'] , '" style="background-image: url(' , $board['last_post']['member']['avatar']['href'] , ');"></a>
-	<ul class="b_listing"> 
-		<li>', $board['last_post']['link'] , '</li>
-		<li>', $board['last_post']['time'] , '</li>
-		<li>', $board['last_post']['member']['link'] , '</li>
-	</ul>';
+	<a href="' , $board['last_post']['member']['href'] , '" class="b_avatar_board" title="' , $board['last_post']['member']['name'] , '" style="background-image: url(' , $board['last_post']['member']['avatar']['href'] , ');"></a>
+	<p>', $board['last_post']['last_post_message'], '</p>';
 }
 
 /**

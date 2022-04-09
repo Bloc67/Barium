@@ -1,6 +1,4 @@
 $(function() {
-	$('ul.dropmenu, ul.quickbuttons').superfish({delay : 250, speed: 100, sensitivity : 8, interval : 50, timeout : 1});
-
 	// tooltips
 	$('.preview').SMFtooltip();
 
@@ -15,8 +13,12 @@ $(function() {
 		$(what).addClass('visible');
 		$(this).addClass('active');
 	});
-
-
+	// board details
+	$('.b_binfo_text').mouseover(function() {
+		$('#b_details section').hide(1);
+		var what = '#' + $(this).attr('data-item');
+		$(what).show(50);
+	});
 });
 
 

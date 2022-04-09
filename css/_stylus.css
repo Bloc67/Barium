@@ -417,15 +417,18 @@
         float: left;
     }
     .b_avatar_board {
-        width: 1.2rem;
-        height: 1.2rem;
+        width: 3rem;
+        height: 3rem;
         background-size: cover;
         border-radius: 4px;
     }
     #b_details .b_avatar_board {
         position: relative;
+        display: block;
         margin: 6px 0 0 0px;
     }
+    #b_details section { display: none;}
+    
     }
     
     @-moz-document url-prefix("http://localhost/web/smf21/") {
