@@ -13,13 +13,6 @@ $(function() {
 		$(what).addClass('visible');
 		$(this).addClass('active');
 	});
-	// board details
-	$('.b_binfo_text').mouseover(function() {
-		$('#b_details section').hide(1);
-		var what = '#' + $(this).attr('data-item');
-		$(what).show(50);
-	});
-
 	// dock the cats
 	$('#b_bi_cats').scrollToFixed();
 

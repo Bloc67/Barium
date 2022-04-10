@@ -85,7 +85,8 @@ function template_tab_bcats()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<dl id="b_bi_cats" class="b">';
+<div>
+	<dl id="b_bi_cats">';
 
 	foreach ($context['categories'] as $category)
 	{
@@ -107,7 +108,8 @@ function template_tab_bcats()
 		</dd>';
 	}
 	echo '
-	</dl>';
+	</dl>
+</div>';
 }
 function aside_buttons()
 {
@@ -176,8 +178,7 @@ function template_tab_bdetail()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="b_details">
-		<span>Details</span>';
+	<div id="b_details">';
 	foreach ($context['categories'] as $category)
 	{
 		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
