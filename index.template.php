@@ -44,7 +44,7 @@ function template_init()
  */
 function template_html_above()
 {
-	global $context, $scripturl, $txt, $modSettings;
+	global $context, $scripturl, $txt, $modSettings, $settings;
 
 	echo '<!DOCTYPE html>
 <html', $context['right_to_left'] ? ' dir="rtl"' : '', !empty($txt['lang_locale']) ? ' lang="' . str_replace("_", "-", substr($txt['lang_locale'], 0, strcspn($txt['lang_locale'], "."))) . '"' : '', '>
@@ -60,6 +60,7 @@ function template_html_above()
 	
 	template_javascript();
 	echo '
+	<script src="' , $settings['theme_url'] , '/scripts/jquery-scrolltofixed-min.js" type="text/javascript"></script>
 	<title>', $context['page_title_html_safe'], '</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">';
 	foreach ($context['meta_tags'] as $meta_tag)

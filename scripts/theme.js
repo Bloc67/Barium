@@ -19,7 +19,12 @@ $(function() {
 		var what = '#' + $(this).attr('data-item');
 		$(what).show(50);
 	});
+
+	// dock the cats
+	$('#b_bi_cats').scrollToFixed();
+
 });
+
 
 
 // The purpose of this code is to fix the height of overflow: auto blocks, because some browsers can't figure it out for themselves.

@@ -85,7 +85,7 @@ function template_tab_bcats()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<dl id="b_bi_cats">';
+	<dl id="b_bi_cats" class="b">';
 
 	foreach ($context['categories'] as $category)
 	{
@@ -176,7 +176,8 @@ function template_tab_bdetail()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="b_details">';
+	<div id="b_details">
+		<span>Details</span>';
 	foreach ($context['categories'] as $category)
 	{
 		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
@@ -231,8 +232,8 @@ function template_bi_board_info($board)
 {
 	global $context, $scripturl, $txt;
 	echo '
-	<div class="b_binfo">
-		<div data-item="b_bdetail_' , $board['id'] , '" class="b_binfo_text b_', $board['board_class'], '">	
+	<span class="b_binfo">
+		<span data-item="b_bdetail_' , $board['id'] , '" class="b_binfo_text b_', $board['board_class'], '">	
 			<a href="', $board['href'], '" id="b', $board['id'], '">', $board['name'], '</a>';
 
 	if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
@@ -244,9 +245,9 @@ function template_bi_board_info($board)
 			', function_exists('template_bi_' . $board['type'] . '_stats') ? call_user_func('template_bi_' . $board['type'] . '_stats', $board) : template_bi_board_stats($board),'
 			', function_exists('template_bi_' . $board['type'] . '_lastpost') ? call_user_func('template_bi_' . $board['type'] . '_lastpost', $board) : template_bi_board_lastpost($board),'
 			', function_exists('template_bi_' . $board['type'] . '_icon') ? call_user_func('template_bi_' . $board['type'] . '_icon', $board) : template_bi_board_icon($board), '
-		</div>
+		</span>
 		<p class="b_description">', $board['description'], '</p>
-	</div>';
+	</span>';
 
 }
 
