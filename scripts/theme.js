@@ -22,6 +22,8 @@ $(function() {
 
 	// dock the cats
 	$('#b_bi_cats').scrollToFixed();
+	// dock the board details
+	$('#b_details_sections').scrollToFixed();
 
 });
 

@@ -425,25 +425,22 @@
     #b_details .b_avatar_board {
         position: relative;
         display: block;
-        margin: 6px 0 0 0px;
+        margin: 0 0 0 1rem;
         float: right;
     }
     #b_details .board_description {
         padding: 0.5rem 0;
     }
-    #b_details section { 
-        opacity: 0.4; 
-        transition: all 100ms;
-        padding-bottom: 1rem;
-        border-bottom: solid 1px #0004;
-        margin-bottom: 1rem;
+    #b_details {
+        padding: 0;  
+        font-size: 0.9rem;
     }
-    #b_details section.active { 
-        opacity: 1; 
-        transition: all 100ms;
-    }
+    #b_details section { display: none;}
+    #b_details section.active { display: block; }
+    p.moderators {  padding: 0.5rem 0; }
     
-    #b_bi_cats.scroll-to-fixed-fixed {
+    #b_bi_cats.scroll-to-fixed-fixed,
+    #b_details_sections.scroll-to-fixed-fixed{
         padding-top: 0.75rem;
         transition: all 100ms; 
     }

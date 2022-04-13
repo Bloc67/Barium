@@ -178,7 +178,9 @@ function template_tab_bdetail()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="b_details">';
+	<div id="b_details">
+		<div>
+			<div id="b_details_sections">';
 	foreach ($context['categories'] as $category)
 	{
 		// If theres no parent boards we can see, avoid showing an empty category (unless its collapsed)
@@ -188,30 +190,32 @@ function template_tab_bdetail()
 		foreach ($category['boards'] as $board)
 		{
 			echo '
-		<section id="b_bdetail_' , $board['id'] , '">';
+				<section id="b_bdetail_' , $board['id'] , '">';
 			// Has it outstanding posts for approval?
 //		if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
 			echo '
-			<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="b_bi_icons b_moderate floatright"></a>';
+					<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="b_bi_icons b_moderate floatright"></a>';
 
 		echo '
-			<h2>' , $board['name'] , '</h2>
-			<div class="board_description">', $board['description'], '</div>';
+					<h2>' , $board['name'] , '</h2>
+					<div class="board_description">', $board['description'], '</div>';
 
 		// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
 //		if (!empty($board['link_moderators']))
 			echo '
-			<p class="moderators">', count($board['link_moderators']) == 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
+					<p class="moderators">', count($board['link_moderators']) == 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
 
 		// Show the last post if there is one.
 			echo'
-			<div class="b_lastpost">
-				', function_exists('bindex_bi_' . $board['type'] . '_lastpost') ? call_user_func('bindex_bi_' . $board['type'] . '_lastpost', $board) : bindex_bi_board_lastpost($board), '
-			</div>
-		</section>';
+					<div class="b_lastpost">
+						', function_exists('bindex_bi_' . $board['type'] . '_lastpost') ? call_user_func('bindex_bi_' . $board['type'] . '_lastpost', $board) : bindex_bi_board_lastpost($board), '
+					</div>
+				</section>';
 		}
 	}
 	echo '
+			</div>
+		</div>
 	</div>';
 }
 
@@ -270,7 +274,7 @@ function bindex_bi_board_lastpost($board) {
 	if (!empty($board['last_post']['id']))
 		echo '
 	<a href="' , $board['last_post']['member']['href'] , '" class="b_avatar_board" title="' , $board['last_post']['member']['name'] , '" style="background-image: url(' , $board['last_post']['member']['avatar']['href'] , ');"></a>
-	<p>', $board['last_post']['last_post_message'], '</p>';
+	<div>', $board['last_post']['last_post_message'], '</div>';
 }
 
 /**
