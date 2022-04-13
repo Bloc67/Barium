@@ -178,7 +178,7 @@ function template_tab_bdetail()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="b_details">
+	<div id="b_details" class="b_icon_info">
 		<div>
 			<div id="b_details_sections">';
 	foreach ($context['categories'] as $category)

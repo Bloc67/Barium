@@ -422,6 +422,13 @@
         background-size: cover;
         border-radius: 4px;
     }
+    #b_details {
+        background-size: 400%;
+        background-repeat: no-repeat;
+        background-position: left center;
+        margin: 0px 0.2rem 2px 0.2rem;
+    }
+    
     #b_details .b_avatar_board {
         position: relative;
         display: block;

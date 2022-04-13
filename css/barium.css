@@ -13,6 +13,7 @@
 .b_bi_icons.b_toggle_up { background-image: url(../images/svg/minus-square.svg); }
 .b_bi_icons.b_toggle_down { background-image: url(../images/svg/plus-square.svg); }
 
+.b_icon_info { background-image: url(../images/svg/info-transparent.svg); }
 
 /* footer */
 #b_footer_site { 
