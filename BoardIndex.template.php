@@ -192,7 +192,7 @@ function template_tab_bdetail()
 			echo '
 				<section id="b_bdetail_' , $board['id'] , '">';
 			// Has it outstanding posts for approval?
-//		if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
+		if ($board['can_approve_posts'] && ($board['unapproved_posts'] || $board['unapproved_topics']))
 			echo '
 					<a href="', $scripturl, '?action=moderate;area=postmod;sa=', ($board['unapproved_topics'] > 0 ? 'topics' : 'posts'), ';brd=', $board['id'], ';', $context['session_var'], '=', $context['session_id'], '" title="', sprintf($txt['unapproved_posts'], $board['unapproved_topics'], $board['unapproved_posts']), '" class="b_bi_icons b_moderate floatright"></a>';
 
@@ -201,7 +201,7 @@ function template_tab_bdetail()
 					<div class="board_description">', $board['description'], '</div>';
 
 		// Show the "Moderators: ". Each has name, href, link, and id. (but we're gonna use link_moderators.)
-//		if (!empty($board['link_moderators']))
+		if (!empty($board['link_moderators']))
 			echo '
 					<p class="moderators">', count($board['link_moderators']) == 1 ? $txt['moderator'] : $txt['moderators'], ': ', implode(', ', $board['link_moderators']), '</p>';
 

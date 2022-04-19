@@ -328,9 +328,12 @@ function template_body_above()
  */
 function template_body_below()
 {
-	global $context, $txt, $scripturl, $modSettings, $settings;
+	global $context, $txt, $scripturl, $modSettings, $settings, $options;
 
 	echo '
+	<h2 id="testh2"' , !empty($options['testh2click']) ? ' class="b_active"' : '' , '>test</test>
+	' , b_toggle('testh2click', $options['testh2click'], 'testh2', 'checkbox', 'click me', 'helptext here') , '
+
 			</main>
 		</article>
 		<footer id="b_footer_site">
@@ -720,5 +723,22 @@ function template_maint_warning_below()
 {
 
 }
+
+function b_toggle($optionId, $optionValue, $sourceId, $triggerType, $triggerText = '', $triggerHelp = '')
+{
+	global $settings, $options, $context;
+	
+	if($triggerType == 'checkbox')
+	{
+		echo '
+		<span class="b_toggle_span">	
+			<input value="1" type="checkbox"' , !empty($options[$optionId]) ? ' checked="checked"' : '' , ' title="' , $triggerHelp , '" class="b_toggle_checkbox" id="b_toggle_' , $optionId , '" onclick="bToggle(this.id, \''.$sourceId.'\' ,\'' .$optionId.'\', \'' . $optionValue . '\',\'' . $context['session_id'] . '\',\'' . $context['session_var']. '\',\'' . $settings['theme_id'] . '\');">
+			<label for="b_toggle_' , $optionId , '">' . $triggerText . '</label>
+		<span>';
+	}
+}
+
+
+
 
 ?>
