@@ -15,6 +15,11 @@
 
 .b_icon_info { background-image: url(../images/svg/info-transparent.svg); }
 
+.b_people { background-image: url(../images/svg/users.svg); }
+.b_stats { background-image: url(../images/svg/bar-chart.svg); }
+.b_recent_posts { background-image: url(../images/svg/layers.svg); }
+.b_calendar { background-image: url(../images/svg/calendar.svg); }
+
 /* footer */
 #b_footer_site { 
     background-image: url(../images/smflogo.svg); 

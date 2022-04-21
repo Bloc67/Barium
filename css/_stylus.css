@@ -452,6 +452,55 @@
         padding-top: 0.75rem;
         transition: all 100ms; 
     }
+    /* Infocenter*/
+    .b_section_tabs main #b_bi_tab2_section {
+        grid-template-columns: 2fr 3fr;
+    }
+    .b_bi_infocenter_items {
+        padding: 0 0 0.5rem 0;
+    }
+    .b_bi_infocenter_items h4 {
+        font-weight: normal;
+        font-size: 0.9rem;
+        color: steelblue;
+        text-transform: uppercase;
+        padding: 0 0 0.5rem 0;
+    }
+    .b_bi_infocenter_items h4 a {
+        color: steelblue;
+    }
+    .b_bi_infocenter_items p {
+        font-size: 0.9rem;
+        line-height: 1.1rem;
+        padding: 0 0 0.5rem 0;
+        border-bottom: solid 1px #ddd;
+    }
+    .b_bi_infocenter_items:last-of-type p {
+        border-bottom: none;
+    }
+    .b_icons {
+        display: block;
+        width: 1rem;
+        float: left;
+        height: 1rem;
+        margin: 0 0.3rem 0 0;
+        opacity: 0.5; 
+        background-size: contain;
+    }
+    dl.b_recent {
+       display: grid;
+       grid-template-columns: 1fr 4fr;
+       grid-gap: 0.2rem;
+    }
+    dl.b_recent dd ul {
+       display: grid;
+       padding: 0;
+       margin: 0;
+       grid-template-columns: 1fr 2fr 2fr;
+       grid-gap: 0.2rem;
+    }
+    
+    
     
     }
     

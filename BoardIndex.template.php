@@ -32,7 +32,6 @@ function template_boardindex_outer_above()
 			<div id="b_bi_tab2_section">
 				' , template_tab_ic() , '
 				' , template_tab_ic_selected() , '
-				' , template_tab_ic_selected2() , '
 			</div>
 		</main>
 	</section>			
@@ -320,19 +319,17 @@ function template_ic_block_recent()
 
 	// This is the "Recent Posts" bar.
 	echo '
-			<div class="sub_bar">
-				<h4 class="subbg">
-					<a href="', $scripturl, '?action=recent"><span class="main_icons recent_posts"></span> ', $txt['recent_posts'], '</a>
-				</h4>
-			</div>
-			<div id="recent_posts_content">';
+			<h4>
+				<a href="', $scripturl, '?action=recent"><span class="b_icons b_recent_posts"></span> ', $txt['recent_posts'], '</a>
+			</h4>
+			<div id="b_recent_posts">';
 
 	// Only show one post.
 	if ($settings['number_recent_posts'] == 1)
 	{
 		// latest_post has link, href, time, subject, short_subject (shortened with...), and topic. (its id.)
 		echo '
-				<p id="infocenter_onepost" class="inline">
+				<p>
 					<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a> ', sprintf($txt['is_recent_updated'], '&quot;' . $context['latest_post']['link'] . '&quot;'), ' (', $context['latest_post']['time'], ')<br>
 				</p>';
 	}
@@ -340,30 +337,23 @@ function template_ic_block_recent()
 	elseif (!empty($context['latest_posts']))
 	{
 		echo '
-				<table id="ic_recentposts">
-					<tr class="windowbg">
-						<th class="recentpost">', $txt['message'], '</th>
-						<th class="recentposter">', $txt['author'], '</th>
-						<th class="recentboard">', $txt['board'], '</th>
-						<th class="recenttime">', $txt['date'], '</th>
-					</tr>';
-
-		/* Each post in latest_posts has:
-			board (with an id, name, and link.), topic (the topic's id.), poster (with id, name, and link.),
-			subject, short_subject (shortened with...), time, link, and href. */
+				<dl class="b_recent">
+		';
 		foreach ($context['latest_posts'] as $post)
 			echo '
-					<tr class="windowbg">
-						<td class="recentpost"><strong>', $post['link'], '</strong></td>
-						<td class="recentposter">', $post['poster']['link'], '</td>
-						<td class="recentboard">', $post['board']['link'], '</td>
-						<td class="recenttime">', $post['time'], '</td>
-					</tr>';
+					<dt class="b_recentpost">', $post['link'], '</dt>
+					<dd>
+						<ul>
+							<li class="b_recentposter">', $post['poster']['link'], '</li>
+							<li class="b_recentboard">', $post['board']['link'], '</li>
+							<li class="b_recenttime">', $post['time'], '</li>
+						</ul>
+					</dd>';
 		echo '
-				</table>';
+				</dl>';
 	}
 	echo '
-			</div><!-- #recent_posts_content -->';
+			</div>';
 }
 
 /**
@@ -374,17 +364,15 @@ function template_ic_block_calendar()
 	global $context, $scripturl, $txt;
 
 	// Show information about events, birthdays, and holidays on the calendar.
-	echo '
-			<div class="sub_bar">
-				<h4 class="subbg">
-					<a href="', $scripturl, '?action=calendar' . '"><span class="main_icons calendar"></span> ', $context['calendar_only_today'] ? $txt['calendar_today'] : $txt['calendar_upcoming'], '</a>
-				</h4>
-			</div>';
+	echo ' 
+			<h4>
+				<a href="', $scripturl, '?action=calendar' . '"><span class="b_icons b_calendar"></span> ', $context['calendar_only_today'] ? $txt['calendar_today'] : $txt['calendar_upcoming'], '</a>
+			</h4>';
 
 	// Holidays like "Christmas", "Chanukah", and "We Love [Unknown] Day" :P
 	if (!empty($context['calendar_holidays']))
-		echo '
-			<p class="inline holiday">
+		echo '  
+			<p class="holiday">
 				<span>', $txt['calendar_prompt'], '</span> ', implode(', ', $context['calendar_holidays']), '
 			</p>';
 
@@ -392,7 +380,7 @@ function template_ic_block_calendar()
 	if (!empty($context['calendar_birthdays']))
 	{
 		echo '
-			<p class="inline">
+			<p>
 				<span class="birthday">', $context['calendar_only_today'] ? $txt['birthdays'] : $txt['birthdays_upcoming'], '</span>';
 
 		// Each member in calendar_birthdays has: id, name (person), age (if they have one set?), is_last. (last in list?), and is_today (birthday is today?)
@@ -408,7 +396,7 @@ function template_ic_block_calendar()
 	if (!empty($context['calendar_events']))
 	{
 		echo '
-			<p class="inline">
+			<p>
 				<span class="event">', $context['calendar_only_today'] ? $txt['events'] : $txt['events_upcoming'], '</span> ';
 
 		// Each event in calendar_events should have:
@@ -430,12 +418,10 @@ function template_ic_block_stats()
 
 	// Show statistical style information...
 	echo '
-			<div class="sub_bar">
-				<h4 class="subbg">
-					<a href="', $scripturl, '?action=stats" title="', $txt['more_stats'], '"><span class="main_icons stats"></span> ', $txt['forum_stats'], '</a>
-				</h4>
-			</div>
-			<p class="inline">
+			<h4>
+				<a href="', $scripturl, '?action=stats" title="', $txt['more_stats'], '"><span class="b_icons b_stats"></span> ', $txt['forum_stats'], '</a>
+			</h4>
+			<p>
 				', $context['common_stats']['boardindex_total_posts'], '', !empty($settings['show_latest_member']) ? ' - ' . $txt['latest_member'] . ': <strong> ' . $context['common_stats']['latest_member']['link'] . '</strong>' : '', '<br>
 				', (!empty($context['latest_post']) ? $txt['latest_post'] . ': <strong>&quot;' . $context['latest_post']['link'] . '&quot;</strong>  (' . $context['latest_post']['time'] . ')<br>' : ''), '
 				<a href="', $scripturl, '?action=recent">', $txt['recent_view'], '</a>
@@ -450,12 +436,10 @@ function template_ic_block_online()
 	global $context, $scripturl, $txt, $modSettings, $settings;
 	// "Users online" - in order of activity.
 	echo '
-			<div class="sub_bar">
-				<h4 class="subbg">
-					', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<span class="main_icons people"></span> ', $txt['online_users'], '', $context['show_who'] ? '</a>' : '', '
-				</h4>
-			</div>
-			<p class="inline">
+			<h4>
+				', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<span class="b_icons b_people"></span> ', $txt['online_users'], '', $context['show_who'] ? '</a>' : '', '
+			</h4>
+			<p>
 				', $context['show_who'] ? '<a href="' . $scripturl . '?action=who">' : '', '<strong>', $txt['online'], ': </strong>', comma_format($context['num_guests']), ' ', $context['num_guests'] == 1 ? $txt['guest'] : $txt['guests'], ', ', comma_format($context['num_users_online']), ' ', $context['num_users_online'] == 1 ? $txt['user'] : $txt['users'];
 
 	// Handle hidden users and buddies.
@@ -503,42 +487,41 @@ function template_info_center()
 // the infocenter part
 function template_tab_ic()
 {
-	global $context, $options, $txt;
+	global $context, $options, $txt, $settings;
 
-	echo 'Infocenter';
-	return; 
-	
 	if (empty($context['info_center']))
 		return;
 
 	// Here's where the "Info Center" starts...
 	echo '
-	<div class="roundframe" id="info_center">
-		<div class="title_bar">
-			<h3 class="titlebg">
-				<span class="toggle_up floatright" id="upshrink_ic" title="', $txt['hide_infocenter'], '" style="display: none;"></span>
-				<a href="#" id="upshrink_link">', sprintf($txt['info_center_title'], $context['forum_name_html_safe']), '</a>
-			</h3>
-		</div>
-		<div id="upshrink_stats"', empty($options['collapse_header_ic']) ? '' : ' style="display: none;"', '>';
+	<div id="b_bi_infocenter">';
 
 	foreach ($context['info_center'] as $block)
 	{
-		$func = 'template_ic_block_' . $block['tpl'];
-		$func();
+		if($block['tpl'] != 'recent') 
+		{
+			$func = 'template_ic_block_' . $block['tpl'];
+			echo '
+		<section class="b_bi_infocenter_items b_ic_' . $block['tpl'] . '">
+			' , $func() , '
+		</section>';
+		}
 	}
-
 	echo '
-		</div><!-- #upshrink_stats -->
-	</div><!-- #info_center -->';
+	</div>';
 }
 
 function template_tab_ic_selected() 
 {
-	echo 'Selected 1';
+	global $settings;
+
+	echo '
+	<div id="b_bi_infocenter_selected">
+		<section class="b_bi_infocenter_items b_ic_recent">
+			' , template_ic_block_recent() , '
+		</section>
+	</div>';
+
 }
-function template_tab_ic_selected2() 
-{
-	echo 'Selected 2';
-}
+
 ?>
