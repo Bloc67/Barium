@@ -331,9 +331,6 @@ function template_body_below()
 	global $context, $txt, $scripturl, $modSettings, $settings, $options;
 
 	echo '
-	<h2 id="testh2"' , !empty($options['testh2click']) ? ' class="b_active"' : '' , '>test</test>
-	' , b_toggle('testh2click', $options['testh2click'], 'testh2', 'checkbox', 'click me', 'helptext here') , '
-
 			</main>
 		</article>
 		<footer id="b_footer_site">
@@ -726,19 +723,27 @@ function template_maint_warning_below()
 
 function b_toggle($optionId, $optionValue, $sourceId, $triggerType, $triggerText = '', $triggerHelp = '')
 {
-	global $settings, $options, $context;
+	global $settings, $options, $context, $txt;
 	
 	if($triggerType == 'checkbox')
 	{
 		echo '
 		<span class="b_toggle_span">	
-			<input value="1" type="checkbox"' , !empty($options[$optionId]) ? ' checked="checked"' : '' , ' title="' , $triggerHelp , '" class="b_toggle_checkbox" id="b_toggle_' , $optionId , '" onclick="bToggle(this.id, \''.$sourceId.'\' ,\'' .$optionId.'\', \'' . $optionValue . '\',\'' . $context['session_id'] . '\',\'' . $context['session_var']. '\',\'' . $settings['theme_id'] . '\');">
-			<label for="b_toggle_' , $optionId , '">' . $triggerText . '</label>
-		<span>';
+			<input value="0" type="checkbox"' , !empty($options[$optionId]) ? ' checked="checked"' : '' , ' title="' , $txt[$triggerHelp] , '" class="b_toggle_checkbox" id="b_toggle_' , $optionId , '" onclick="bToggle(this.id, \''.$sourceId.'\' ,\'' .$optionId.'\', \'' . $optionValue . '\',\'' . $context['session_id'] . '\',\'' . $context['session_var']. '\',\'' . $settings['theme_id'] . '\');">
+			<label for="b_toggle_' , $optionId , '">' . $txt[$triggerText] . '</label>
+		</span>';
 	}
 }
 
+function b_options($section)
+{
+	global $settings, $options, $txt, $context;
 
+	if($section=='bi_boards') {
+		b_toggle('b_hidecategorytext', $options['b_hidecategorytext'], 'b_bi_cats', 'checkbox', 'b_hidecategorytext', 'b_hidecategorytext_help');
+		b_toggle('b_hidecategoryindex', $options['b_hidecategoryindex'], 'b_boardindex_tabs', 'checkbox', 'b_hidecategoryindex', 'b_hidecategoryindex_help');
+	}
+}
 
 
 ?>

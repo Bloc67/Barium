@@ -273,6 +273,7 @@
         grid-gap: 1rem;
         display: none;
     }
+    
     .b_section_tabs main > div > * {
         border-right: solid 1px #ddd;
         padding-right: 1rem;
@@ -451,6 +452,7 @@
         padding-top: 0.75rem;
         transition: all 100ms; 
     }
+    
     }
     
     @-moz-document url-prefix("http://localhost/web/smf21/") {

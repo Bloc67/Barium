@@ -26,16 +26,6 @@ $(function() {
 	$('#b_details_sections').scrollToFixed();
 });
 
-function bToggle(toggleId, sourceId, OptionName, OptionValue, SessionId, SessionVar, themeId)
-{
-	var what = ((OptionValue == '1') ? '0' : '1'); 
-	$('#' + sourceId).removeClass('b_active'); 
-	if(what == '1') {
-		$('#' + sourceId).addClass('b_active'); 
-	}
-	smf_setThemeOption(OptionName, what, themeId , SessionId, SessionVar, null);
-}
-
 
 // The purpose of this code is to fix the height of overflow: auto blocks, because some browsers can't figure it out for themselves.
 function smf_codeBoxFix()

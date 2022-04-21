@@ -15,7 +15,7 @@
  */
 function template_boardindex_outer_above() 
 {
-	global $txt;
+	global $txt, $options;
 
 	echo '
 	<section id="b_boardindex_tabs" class="b_section_tabs">
@@ -128,7 +128,8 @@ function template_tab_boardlist()
 	global $context, $txt, $scripturl;
 
 	echo '
-	<div id="b_bi_boards" class="b_boardindex">';
+	<div id="b_bi_boards" class="b_boardindex">
+		';
 
 	foreach ($context['categories'] as $category)
 	{
