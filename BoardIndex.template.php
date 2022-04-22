@@ -457,19 +457,19 @@ function template_ic_block_online()
 
 	echo $context['show_who'] ? '</a>' : '', '
 
-				&nbsp;-&nbsp;', $txt['most_online_today'], ': <strong>', comma_format($modSettings['mostOnlineToday']), '</strong>&nbsp;-&nbsp;
+				<br>', $txt['most_online_today'], ': <strong>', comma_format($modSettings['mostOnlineToday']), '</strong><br>
 				', $txt['most_online_ever'], ': ', comma_format($modSettings['mostOnline']), ' (', timeformat($modSettings['mostDate']), ')<br>';
 
 	// Assuming there ARE users online... each user in users_online has an id, username, name, group, href, and link.
 	if (!empty($context['users_online']))
 	{
 		echo '
-				', sprintf($txt['users_active'], $modSettings['lastActive']), ': ', implode(', ', $context['list_users_online']);
+				', sprintf($txt['users_active'], $modSettings['lastActive']), ': <br>', implode(', ', $context['list_users_online']);
 
 		// Showing membergroups?
 		if (!empty($settings['show_group_key']) && !empty($context['membergroups']))
 			echo '
-				<span class="membergroups">' . implode(', ', $context['membergroups']) . '</span>';
+				<br> <span class="membergroups">' . implode(', ', $context['membergroups']) . '</span>';
 	}
 
 	echo '
