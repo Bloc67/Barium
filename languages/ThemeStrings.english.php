@@ -1,10 +1,10 @@
 <?php
 // Version: 2.1.0; Themestrings
 
-global $settings;
+global $settings, $txt;
 
-$txt['b_bi_tab1'] = 'Boardlist';
-$txt['b_bi_tab2'] = 'infocenter';
+$txt['b_bi_tab1'] = 'Boardindex';
+$txt['b_bi_tab2'] = 'InfoCenter';
 
 
 ?>

@@ -337,20 +337,18 @@ function template_ic_block_recent()
 	elseif (!empty($context['latest_posts']))
 	{
 		echo '
-				<dl class="b_recent">
+				<div class="b_recent">
 		';
 		foreach ($context['latest_posts'] as $post)
 			echo '
-					<dt class="b_recentpost">', $post['link'], '</dt>
-					<dd>
-						<ul>
-							<li class="b_recentposter">', $post['poster']['link'], '</li>
-							<li class="b_recentboard">', $post['board']['link'], '</li>
-							<li class="b_recenttime">', $post['time'], '</li>
-						</ul>
-					</dd>';
+					<ul>
+						<li class="b_recentpost">', $post['link'], '</li>
+						<li class="b_recentposter">', $post['poster']['link'], '</li>
+						<li class="b_recentboard">', $post['board']['link'], '</li>
+						<li class="b_recenttime">', $post['time'], '</li>
+					</ul>';
 		echo '
-				</dl>';
+				</div>';
 	}
 	echo '
 			</div>';
