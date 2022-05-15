@@ -37,6 +37,8 @@ function template_init()
 	// Add the identifier as an array key. IE array('smf_script'); Some external files might not add identifiers, on those cases SMF uses its filename as reference.
 	if (!isset($settings['disable_files']))
 		$settings['disable_files'] = array();
+
+	loadtemplate('Barium');
 }
 
 /**
@@ -296,18 +298,12 @@ function template_body_above()
 		</header>
 		<aside id="b_aside_site">';
 
-	// Show a random news item? (or you could pick one from news_lines...)
-	if(function_exists('template_newsfader')) {
-		template_newsfader();
-	}
-	else {
-		if (!empty($settings['enable_news']) && !empty($context['random_news_line'])) {
-			echo '
+	if (!empty($settings['enable_news']) && !empty($context['random_news_line'])) {
+		echo '
 			<div class="b_aside_item">
 				<h2>', $txt['news'], '</h2>
 				<p>', $context['random_news_line'], '</p>
 			</div>';
-			}
 	}
 	// any buttons we want on the side?
 	if(function_exists('aside_buttons')) {
@@ -340,7 +336,7 @@ function template_body_below()
 				<li><a href="', $scripturl, '?action=help">', $txt['help'], '</a></li>
 				', (!empty($modSettings['requireAgreement'])) ? '
 				<li><a href="' . $scripturl . '?action=agreement">' . $txt['terms_and_rules'] . '</a></li>' : '', 
-				'<li><a href="#top_section">', $txt['go_up'], '</a></li>';
+				'<li><a href="#b_header_site"><span class="b_up" title="', $txt['go_up'], '"></span></a></li>';
 
 			// Show the load time?
 	if ($context['show_load_time'])
@@ -720,30 +716,5 @@ function template_maint_warning_below()
 {
 
 }
-
-function b_toggle($optionId, $optionValue, $sourceId, $triggerType, $triggerText = '', $triggerHelp = '')
-{
-	global $settings, $options, $context, $txt;
-	
-	if($triggerType == 'checkbox')
-	{
-		echo '
-		<span class="b_toggle_span">	
-			<input value="0" type="checkbox"' , !empty($options[$optionId]) ? ' checked="checked"' : '' , ' title="' , $txt[$triggerHelp] , '" class="b_toggle_checkbox" id="b_toggle_' , $optionId , '" onclick="bToggle(this.id, \''.$sourceId.'\' ,\'' .$optionId.'\', \'' . $optionValue . '\',\'' . $context['session_id'] . '\',\'' . $context['session_var']. '\',\'' . $settings['theme_id'] . '\');">
-			<label for="b_toggle_' , $optionId , '">' . $txt[$triggerText] . '</label>
-		</span>';
-	}
-}
-
-function b_options($section)
-{
-	global $settings, $options, $txt, $context;
-
-	if($section=='bi_boards') {
-		b_toggle('b_hidecategorytext', $options['b_hidecategorytext'], 'b_bi_cats', 'checkbox', 'b_hidecategorytext', 'b_hidecategorytext_help');
-		b_toggle('b_hidecategoryindex', $options['b_hidecategoryindex'], 'b_boardindex_tabs', 'checkbox', 'b_hidecategoryindex', 'b_hidecategoryindex_help');
-	}
-}
-
 
 ?>

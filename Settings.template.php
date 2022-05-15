@@ -198,15 +198,6 @@ function template_settings()
 			'id' => 'enable_news',
 			'label' => $txt['enable_random_news'],
 		),
-		array(
-			'id' => 'show_newsfader',
-			'label' => $txt['news_fader'],
-		),
-		array(
-			'id' => 'newsfader_time',
-			'label' => $txt['admin_fader_delay'],
-			'type' => 'number',
-		),
 		'',
 		array(
 			'id' => 'number_recent_posts',

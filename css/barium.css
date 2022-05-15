@@ -19,6 +19,7 @@
 .b_stats { background-image: url(../images/svg/bar-chart.svg); }
 .b_recent_posts { background-image: url(../images/svg/layers.svg); }
 .b_calendar { background-image: url(../images/svg/calendar.svg); }
+.b_up { background-image: url(../images/svg/arrow-up-circle.svg); }
 
 /* footer */
 #b_footer_site { 

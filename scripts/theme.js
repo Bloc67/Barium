@@ -24,8 +24,10 @@ $(function() {
 	$('#b_bi_cats').scrollToFixed();
 	// dock the board details
 	$('#b_details_sections').scrollToFixed();
+	// dock the stats
+	$('#b_bi_infocenter').scrollToFixed();
+	
 });
-
 
 // The purpose of this code is to fix the height of overflow: auto blocks, because some browsers can't figure it out for themselves.
 function smf_codeBoxFix()
